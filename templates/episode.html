@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ run_id }} · natural-podcast</title>
+<link rel="stylesheet" href="/static/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo">natural-podcast</a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/script">Text → Script</a>
+      <a href="/render">Script → Audio</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="back-link" style="max-width: var(--max-width); margin: 2rem auto 0; padding: 0 1.5rem;">
+    <a href="/" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">← Back to episodes</a>
+  </div>
+
+  <section class="feature-page" style="margin-top: 1rem;">
+    <div class="result-header" style="margin-bottom: 2rem; align-items: flex-end;">
+      <h1 style="margin-bottom:0">{{ run_id }}</h1>
+      <div class="result-actions">
+        {% if audio_url %}
+        <a href="{{ audio_url }}" download class="btn btn-sm btn-outline">↓ Download MP3</a>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if audio_url %}
+    <div class="player-bar" style="margin-bottom: 4rem; background: #f9f9fb; border-radius: 12px; padding: 1.5rem;">
+      <audio controls preload="metadata" class="main-player" style="width:100%">
+        <source src="{{ audio_url }}" type="audio/mpeg">
+      </audio>
+    </div>
+    {% else %}
+    <p class="no-audio" style="margin-bottom: 4rem; color: var(--text-muted);">Audio not yet generated.</p>
+    {% endif %}
+
+    {% if stages %}
+    <details class="stage-detail" style="margin-bottom: 4rem;">
+      <summary style="font-weight: 600; color: var(--text-secondary); cursor: pointer;">Pipeline stages ({{ stages|length }})</summary>
+      <div style="margin-top:1.5rem">
+        {% for s in stages %}
+        <div class="stage-block" style="margin-bottom: 1.5rem; border-left: 2px solid var(--border); padding-left: 1.5rem;">
+          <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem;">{{ s.label }} <span class="hint" style="margin-left: 0.5rem;">{{ s.chars }} chars</span></h4>
+          <pre style="font-family: inherit; font-size: 0.85rem; color: var(--text-secondary); white-space: pre-wrap; max-height: 200px; overflow: auto;">{{ s.preview }}</pre>
+        </div>
+        {% endfor %}
+      </div>
+    </details>
+    {% endif %}
+
+    <h2 style="font-size: 1.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;">Script</h2>
+    <div class="script-body">
+      {% for l in lines %}
+      <div class="line {{ 'shen' if l.speaker == '林深' else 'ruo' }}">
+        <span class="speaker">{{ l.speaker }}</span>
+        <span class="text">{{ l.text }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+</main>
+
+<footer><p>natural-podcast · powered by MiniMax TTS</p></footer>
+</body>
+</html>

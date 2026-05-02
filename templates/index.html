@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>natural-podcast</title>
+<link rel="stylesheet" href="/static/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+
+<div class="app-container">
+  <aside class="slim-sidebar">
+    <div class="vertical-text"><span>主播</span><b>林深 / 若水</b></div>
+    <div class="sidebar-footer" style="padding-bottom: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; align-items: center;">
+      <a href="https://github.com/deepling-tech/natural-ai-podcast" target="_blank" style="color: var(--muted-foreground);"><i data-lucide="github"></i></a>
+      <a href="#" style="color: var(--muted-foreground);"><i data-lucide="moon"></i></a>
+    </div>
+  </aside>
+
+  <section class="info-sidebar">
+    <div class="podcast-cover-box">
+      <div class="podcast-cover-content">
+        <i data-lucide="waves"></i>
+        <h2>Natural AI</h2>
+      </div>
+    </div>
+    <div class="podcast-info"><h1>natural-podcast</h1></div>
+    <div class="info-sections">
+      <section>
+        <div class="section-label"><div class="square-icon"></div> 关于</div>
+        <div class="description-box">一个基于 AI 的中文播客项目，由林深 &amp; 若水对谈，通过 MiniMax TTS 提供真人质感的听觉体验。</div>
+      </section>
+      <section style="margin-top: 2.5rem;">
+        <div class="section-label"><div class="square-icon" style="background: linear-gradient(135deg, #3b82f6 0%, #2dd4bf 100%);"></div> 功能</div>
+        <nav class="nav-links">
+          <a href="/script" class="nav-item"><i data-lucide="file-text"></i><span>Text → Script</span></a>
+          <a href="/render" class="nav-item"><i data-lucide="headphones"></i><span>Script → Audio</span></a>
+        </nav>
+      </section>
+      <section style="margin-top: 2.5rem;">
+        <div class="section-label"><div class="square-icon" style="background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);"></div> 订阅播放</div>
+        <nav class="nav-links">
+          <a href="#" class="nav-item"><i data-lucide="music"></i><span>网易云音乐</span></a>
+          <a href="https://www.xiaoyuzhoufm.com/podcast/67b06023606e5c59409cd9ba" target="_blank" class="nav-item"><i data-lucide="mic-2"></i><span>小宇宙</span></a>
+          <a href="/rss.xml" class="nav-item"><i data-lucide="rss"></i><span>RSS Feed</span></a>
+        </nav>
+      </section>
+      <section style="margin-top: 2.5rem;">
+        <div class="section-label"><div class="square-icon" style="background: linear-gradient(135deg, #3b82f6 0%, #2dd4bf 100%);"></div> 外部链接</div>
+        <nav class="nav-links">
+          <a href="https://www.deepling.tech" target="_blank" class="nav-item"><i data-lucide="globe"></i><span>深灵.Tech</span></a>
+          <a href="https://github.com/deepling-tech/natural-ai-podcast" target="_blank" class="nav-item"><i data-lucide="github"></i><span>GitHub</span></a>
+        </nav>
+      </section>
+    </div>
+  </section>
+
+  <main class="main-content">
+    <div class="list-header"><h2>最近更新</h2></div>
+    <div class="episode-list">
+      {% if runs %}
+        {% for r in runs %}
+        <article class="episode-item">
+          <time class="ep-date">{{ r.created }}</time>
+          <h3 class="ep-title"><a href="/runs/{{ r.id }}">{{ r.id }}</a>{% if r.has_deepling %}<span class="badge">DEEPLING</span>{% endif %}</h3>
+          <div class="ep-summary"><p>{{ r.preview }}</p></div>
+          <div class="ep-actions">
+            <div class="play-btn-wrapper" onclick="playEpisode('{{ r.audio_url }}', '{{ r.id }}', '{{ r.created }}')"><i data-lucide="play" class="lucide-play"></i><span>播放</span></div>
+            <span style="color: var(--border);">|</span>
+            <a href="/runs/{{ r.id }}" class="action-link">查看详情</a>
+            <span class="ep-meta-item">/ {{ r.line_count }} turns</span>
+          </div>
+        </article>
+        {% endfor %}
+      {% else %}<div style="padding: 8rem 2rem; text-align: center; color: var(--muted-foreground); font-size: 0.9rem;"><i data-lucide="database" style="width: 3rem; height: 3rem; margin-bottom: 1rem; opacity: 0.2;"></i><p>暂无播客内容</p></div>{% endif %}
+    </div>
+    <footer><p>natural-podcast · Powered by MiniMax TTS</p></footer>
+  </main>
+</div>
+
+<div id="globalPlayer" class="global-player">
+  <div class="player-info"><div id="playerTitle" class="player-title">未在播放</div><div id="playerMeta" class="player-meta">选择一个节目开始播放</div></div>
+  <div class="player-controls"><audio id="mainAudio" controls class="main-audio-element"><source src="" type="audio/mpeg"></audio></div>
+  <div style="width: 40px; display: flex; justify-content: flex-end;"><button onclick="closePlayer()" style="background: none; border: none; cursor: pointer; color: var(--muted-foreground);"><i data-lucide="x"></i></button></div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() { lucide.createIcons(); });
+  const player = document.getElementById('globalPlayer');
+  const audio = document.getElementById('mainAudio');
+  const playerTitle = document.getElementById('playerTitle');
+  const playerMeta = document.getElementById('playerMeta');
+  function playEpisode(url, title, date) {
+    if (!url) { alert('该节目暂无音频源'); return; }
+    audio.src = url; playerTitle.innerText = title; playerMeta.innerText = date;
+    player.classList.add('active'); audio.play().catch(err => console.log(err));
+    lucide.createIcons();
+  }
+  function closePlayer() { audio.pause(); player.classList.remove('active'); }
+</script>
+</body>
+</html>

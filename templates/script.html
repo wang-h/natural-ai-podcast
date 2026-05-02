@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Text → Script · natural-podcast</title>
+<link rel="stylesheet" href="/static/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+
+<div class="app-container">
+  <aside class="slim-sidebar">
+    <div class="vertical-text"><span>主播</span><b>林深 / 若水</b></div>
+    <div class="sidebar-footer" style="padding-bottom: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; align-items: center;">
+      <a href="https://github.com/deepling-tech/natural-ai-podcast" target="_blank" style="color: var(--muted-foreground);"><i data-lucide="github"></i></a>
+      <a href="/" style="color: var(--muted-foreground);"><i data-lucide="home"></i></a>
+    </div>
+  </aside>
+
+  <section class="info-sidebar">
+    <div class="podcast-cover-box">
+      <div class="podcast-cover-content">
+        <i data-lucide="waves"></i>
+        <h2>Natural AI</h2>
+      </div>
+    </div>
+    <div class="podcast-info"><h1>natural-podcast</h1></div>
+    <div class="info-sections">
+      <section>
+        <div class="section-label"><div class="square-icon"></div> 当前工具</div>
+        <div class="description-box"><b>Text → Script</b><br>利用 4 阶段 LLM 优化管线，将原始文本转化为具有真人对谈感的播客脚本。</div>
+      </section>
+      <section style="margin-top: 2.5rem;">
+        <div class="section-label"><div class="square-icon" style="background: linear-gradient(135deg, #3b82f6 0%, #2dd4bf 100%);"></div> 导航</div>
+        <nav class="nav-links">
+          <a href="/" class="nav-item"><i data-lucide="layout-grid"></i><span>返回首页</span></a>
+          <a href="/render" class="nav-item"><i data-lucide="headphones"></i><span>Script → Audio</span></a>
+        </nav>
+      </section>
+    </div>
+  </section>
+
+  <main class="main-content">
+    <div class="feature-page" style="padding: 4rem 5rem;">
+      <h1 style="font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem;">Text → Script</h1>
+      <p class="sub" style="color: var(--muted-foreground); margin-bottom: 3rem;">任意文本 → LLM 优化 → 播客脚本</p>
+
+      <form method="post" action="/script" class="feature-form">
+        <label for="source" style="display:block; font-weight:700; margin-bottom:0.75rem;">Source text</label>
+        <textarea id="source" name="source" rows="12" style="width:100%; padding:1.25rem; border:1px solid var(--border); border-radius:12px; font-family:inherit; font-size:1rem; background:#fafafa;" placeholder="在此处粘贴文章、笔记或任何文本..."></textarea>
+        <details class="advanced" style="margin-top:1.5rem;"><summary style="font-size:0.85rem; color:var(--muted-foreground); cursor:pointer; font-weight:600;">高级设置</summary>
+          <div style="margin-top:1rem;"><label for="model" style="display:block; font-size:0.9rem; margin-bottom:0.5rem;">LLM Model</label>
+            <select id="model" name="model" style="width:100%; padding:0.75rem; border:1px solid var(--border); border-radius:8px; background:#fff; font-family:inherit; font-size:0.95rem; cursor:pointer; appearance:none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2371717a%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C/polyline%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 1rem;">
+              <option value="MiniMax-Text-01">MiniMax M2.7 (Default)</option><option value="kimi-latest">Kimi 2.6</option><option value="deepseek-chat">DeepSeek V4</option><option value="qwen-max">Qwen Max</option>
+            </select></div></details>
+        <div style="margin-top:2.5rem;"><button type="submit" style="background:var(--theme-gradient); color:white; border:none; padding:0.8rem 2rem; border-radius:100px; font-weight:700; cursor:pointer; font-size:1rem; box-shadow:0 4px 12px rgba(14,165,233,0.2);">生成脚本</button><p class="hint" style="font-size:0.8rem; color:var(--muted-foreground); margin-top:0.75rem;">大约需要 60–90 秒处理 4 阶段管线</p></div>
+      </form>
+      {% if error %}<div class="msg error" style="margin-top:2rem; padding:1.5rem; background:#fff1f2; border-radius:12px; color:#e11d48; border:1px solid #fda4af;"><pre style="font-size:0.85rem; white-space:pre-wrap;">{{ error }}</pre></div>{% endif %}
+      {% if result %}<div class="result" style="margin-top:5rem; border-top:1px solid var(--border); padding-top:3rem;"><div class="result-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;"><span class="run-id" style="font-family:var(--font-mono); font-weight:700; color:var(--theme-blue);"># {{ result.run_id }}</span>
+          <div class="result-actions" style="display:flex; gap:1rem;"><button class="nav-item" onclick="copyScript()" style="border:1px solid var(--border); background:white; padding:0.5rem 1rem; border-radius:8px; cursor:pointer; font-size:0.9rem; display:flex; align-items:center; gap:0.5rem;"><i data-lucide="copy"></i> 复制</button>
+            <form method="get" action="/render" style="display:inline"><input type="hidden" name="run_id" value="{{ result.run_id }}"><button type="submit" style="background:var(--foreground); color:white; border:none; padding:0.5rem 1.5rem; border-radius:8px; font-weight:600; cursor:pointer; height:40px;">→ 渲染音频</button></form></div></div>
+        <h3 style="margin-bottom:1.5rem; font-weight:800;">最终脚本</h3><pre class="script-output" id="script-output" style="background:#fafafa; border:1px solid var(--border); padding:1.5rem; border-radius:12px; font-family:inherit; line-height:1.7; font-size:1rem; white-space:pre-wrap; max-height:600px; overflow:auto;">{% autoescape false %}{{ result.script }}{% endautoescape %}</pre></div>{% endif %}
+    </div>
+    <footer><p>natural-podcast · Powered by MiniMax TTS</p></footer>
+  </main>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() { lucide.createIcons(); });
+  function copyScript() { const el = document.getElementById('script-output'); if (el) { navigator.clipboard.writeText(el.textContent); alert('已复制到剪贴板'); } }
+</script>
+</body>
+</html>
