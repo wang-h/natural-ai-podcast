@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { Copy, ExternalLink } from 'lucide-react';
+import { Copy, Sparkles, Wand2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function ScriptGenerator() {
   const [source, setSource] = useState('');
@@ -42,71 +52,86 @@ export default function ScriptGenerator() {
   };
 
   return (
-    <div className="feature-page" style={{ padding: '4rem 5rem' }}>
-      <h1 style={{ fontSize: '2.5rem', fontWeight: 800, letterSpacing: '-0.03em', marginBottom: '0.5rem' }}>Text → Script</h1>
-      <p className="sub" style={{ color: 'var(--muted-foreground)', marginBottom: '3rem' }}>任意文本 → LLM 优化 → 播客脚本</p>
+    <div className="max-w-3xl mx-auto py-12 px-6 lg:px-10">
+      <div className="mb-10 text-center md:text-left">
+        <h1 className="text-4xl font-extrabold tracking-tight mb-2">Text → Script</h1>
+        <p className="text-muted-foreground text-lg">将碎片化素材转化为极具生命力的对谈脚本</p>
+      </div>
 
-      <form onSubmit={handleSubmit} className="feature-form">
-        <label htmlFor="source" style={{ display: 'block', fontWeight: 700, marginBottom: '0.75rem' }}>Source text</label>
-        <textarea 
-          id="source" 
-          value={source} 
-          onChange={e => setSource(e.target.value)} 
-          rows={12} 
-          style={{ width: '100%', padding: '1.25rem', border: '1px solid var(--border)', borderRadius: '12px', fontFamily: 'inherit', fontSize: '1rem', background: 'var(--input-bg)' }}
-          placeholder="在此处粘贴文章、笔记或任何文本..."
-        ></textarea>
-
-        <details className="advanced" style={{ marginTop: '1.5rem' }}>
-          <summary style={{ fontSize: '0.85rem', color: 'var(--muted-foreground)', cursor: 'pointer', fontWeight: 600 }}>高级设置</summary>
-          <div style={{ marginTop: '1rem' }}>
-            <label htmlFor="model" style={{ display: 'block', fontSize: '0.9rem', marginBottom: '0.5rem' }}>LLM Model</label>
-            <select 
-              id="model" 
-              value={model} 
-              onChange={e => setModel(e.target.value)} 
-              style={{ width: '100%', padding: '0.75rem', border: '1px solid var(--border)', borderRadius: '8px', background: 'var(--input-bg)', fontFamily: 'inherit', fontSize: '0.95rem', cursor: 'pointer', appearance: 'none' }}
-            >
-              <option value="MiniMax-Text-01">MiniMax M2.7 (Default)</option>
-              <option value="kimi-latest">Kimi 2.6</option>
-              <option value="deepseek-chat">DeepSeek V4</option>
-              <option value="qwen-max">Qwen Max</option>
-            </select>
-          </div>
-        </details>
-
-        <div style={{ marginTop: '2.5rem' }}>
-          <button disabled={loading} type="submit" style={{ background: 'var(--theme-gradient)', color: 'white', border: 'none', padding: '0.8rem 2rem', borderRadius: '100px', fontWeight: 700, cursor: loading ? 'wait' : 'pointer', fontSize: '1rem', boxShadow: '0 4px 12px rgba(14,165,233,0.2)', opacity: loading ? 0.7 : 1 }}>
-            {loading ? '生成中...' : '生成脚本'}
-          </button>
-          <p className="hint" style={{ fontSize: '0.8rem', color: 'var(--muted-foreground)', marginTop: '0.75rem' }}>大约需要 60–90 秒处理 4 阶段管线</p>
+      <form onSubmit={handleSubmit} className="space-y-8">
+        <div className="space-y-3">
+          <Label htmlFor="source" className="text-base font-bold">源素材 (Source Text)</Label>
+          <Textarea 
+            id="source" 
+            value={source} 
+            onChange={e => setSource(e.target.value)} 
+            rows={12} 
+            className="text-base p-4 resize-none focus:ring-2 focus:ring-primary/20"
+            placeholder="在此处粘贴文章、笔记或任何想要转化为播客的文本..."
+          />
         </div>
+
+        <div className="flex flex-col md:flex-row gap-6 md:items-end">
+          <div className="flex-1 space-y-3">
+            <Label htmlFor="model" className="text-sm font-bold opacity-70">LLM Model</Label>
+            <Select value={model} onValueChange={setModel}>
+              <SelectTrigger className="w-full h-11 bg-background">
+                <SelectValue placeholder="选择模型" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="MiniMax-Text-01">MiniMax M2.7 (Default)</SelectItem>
+                <SelectItem value="kimi-latest">Kimi 2.6</SelectItem>
+                <SelectItem value="deepseek-chat">DeepSeek V4</SelectItem>
+                <SelectItem value="qwen-max">Qwen Max</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <Button 
+            disabled={loading} 
+            type="submit" 
+            variant="gradient" 
+            size="pill" 
+            className="h-12 text-base font-bold w-full md:w-auto"
+          >
+            {loading ? <Sparkles className="animate-spin mr-2" /> : <Wand2 className="mr-2" />}
+            {loading ? '生成中...' : '生成脚本'}
+          </Button>
+        </div>
+        <p className="text-xs text-muted-foreground text-center md:text-left">4 阶段 LLM 协同管线处理，大约需要 60–90 秒。</p>
       </form>
 
       {error && (
-        <div className="msg error" style={{ marginTop: '2rem', padding: '1.5rem', background: '#fff1f2', borderRadius: '12px', color: '#e11d48', border: '1px solid #fda4af' }}>
-          <pre style={{ fontSize: '0.85rem', whiteSpace: 'pre-wrap' }}>{error}</pre>
+        <div className="mt-8 p-4 bg-destructive/10 border border-destructive/20 rounded-xl text-destructive text-sm font-mono overflow-auto">
+          {error}
         </div>
       )}
 
       {result && (
-        <div className="result" style={{ marginTop: '5rem', borderTop: '1px solid var(--border)', paddingTop: '3rem' }}>
-          <div className="result-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-            <span className="run-id" style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--theme-blue)' }}># {result.run_id}</span>
-            <div className="result-actions" style={{ display: 'flex', gap: '1rem' }}>
-              <button onClick={copyScript} className="nav-item" style={{ border: '1px solid var(--border)', background: 'var(--card-bg)', padding: '0.5rem 1rem', borderRadius: '8px', cursor: 'pointer', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--foreground)' }}>
-                <Copy size={16} /> 复制
-              </button>
-              <a href={`/render?run_id=${result.run_id}`} style={{ background: 'var(--foreground)', color: 'var(--background)', padding: '0.5rem 1.5rem', borderRadius: '8px', fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', height: '40px' }}>
-                → 渲染音频
-              </a>
+        <div className="mt-16 pt-10 border-t animate-in fade-in slide-in-from-bottom-4 duration-700">
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+            <div className="flex items-center gap-2">
+               <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+               <span className="font-mono text-sm font-bold text-emerald-600">RUN_ID: {result.run_id}</span>
+            </div>
+            <div className="flex gap-3">
+              <Button onClick={copyScript} variant="outline" size="sm" className="h-10 rounded-lg">
+                <Copy size={16} className="mr-2" /> 复制脚本
+              </Button>
+              <Button asChild variant="default" size="sm" className="h-10 rounded-lg">
+                <a href={`/render/?run_id=${result.run_id}`}>→ 渲染音频</a>
+              </Button>
             </div>
           </div>
 
-          <h3 style={{ marginBottom: '1.5rem', fontWeight: 800 }}>最终脚本</h3>
-          <pre className="script-output" style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', padding: '1.5rem', borderRadius: '12px', fontFamily: 'inherit', lineHeight: 1.7, fontSize: '1rem', whiteSpace: 'pre-wrap', maxHeight: '600px', overflow: 'auto', color: 'var(--foreground)' }}>
-            {result.script}
-          </pre>
+          <div className="bg-muted/30 border rounded-2xl p-8 lg:p-10">
+            <h3 className="text-xl font-black mb-6 flex items-center gap-2">
+              <Sparkles size={20} className="text-amber-500" /> 最终脚本预览
+            </h3>
+            <pre className="text-base leading-loose whitespace-pre-wrap font-sans text-foreground/90">
+              {result.script}
+            </pre>
+          </div>
         </div>
       )}
     </div>

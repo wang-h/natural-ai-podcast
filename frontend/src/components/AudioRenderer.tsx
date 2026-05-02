@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Download, ExternalLink } from 'lucide-react';
+import { Download, ExternalLink, Headphones, Info, Music } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { Checkbox } from '@/components/ui/checkbox';
 
 export default function AudioRenderer() {
   const [script, setScript] = useState('');
@@ -12,7 +16,6 @@ export default function AudioRenderer() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // If run_id is in URL params, set it
     const params = new URLSearchParams(window.location.search);
     const id = params.get('run_id');
     if (id) setRunId(id);
@@ -45,80 +48,105 @@ export default function AudioRenderer() {
   };
 
   return (
-    <div className="feature-page" style={{ padding: '4rem 5rem' }}>
-      <h1 style={{ fontSize: '2.5rem', fontWeight: 800, letterSpacing: '-0.03em', marginBottom: '0.5rem' }}>Script → Audio</h1>
-      <p className="sub" style={{ color: 'var(--muted-foreground)', marginBottom: '3rem' }}>播客脚本 → MiniMax TTS → 自然音频</p>
+    <div className="max-w-3xl mx-auto py-12 px-6 lg:px-10">
+      <div className="mb-10 text-center md:text-left">
+        <h1 className="text-4xl font-extrabold tracking-tight mb-2">Script → Audio</h1>
+        <p className="text-muted-foreground text-lg">将文字赋予生命，合成具有真人温度的自然播客</p>
+      </div>
 
-      <form onSubmit={handleSubmit} className="feature-form">
+      <form onSubmit={handleSubmit} className="space-y-8">
         {runId && (
-          <div style={{ background: 'var(--muted)', padding: '1rem', borderRadius: '8px', marginBottom: '1.5rem', fontSize: '0.9rem' }}>
-            <span style={{ fontWeight: 600 }}>Info:</span> 正在为 <strong>{runId}</strong> 渲染。如果留空脚本，将自动读取该 Run 的最终脚本。
+          <div className="flex items-center gap-3 p-4 bg-blue-500/5 border border-blue-200/50 dark:border-blue-900/50 rounded-xl text-sm">
+            <Info size={18} className="text-blue-500 shrink-0" />
+            <p>
+              正在为 <strong>{runId}</strong> 进行渲染。
+              <span className="block md:inline md:ml-2 opacity-70">留空脚本将自动读取该 Run 的最终脚本。</span>
+            </p>
           </div>
         )}
 
-        <label htmlFor="script" style={{ display: 'block', fontWeight: 700, marginBottom: '0.75rem' }}>Podcast script</label>
-        <textarea 
-          id="script" 
-          value={script}
-          onChange={e => setScript(e.target.value)}
-          rows={14} 
-          style={{ width: '100%', padding: '1.25rem', border: '1px solid var(--border)', borderRadius: '12px', fontFamily: 'inherit', fontSize: '1rem', background: 'var(--input-bg)' }}
-          placeholder="林深：大家好...&#10;若水：我是若水..."
-        ></textarea>
-
-        <div className="checkbox-group" style={{ marginTop: '1.5rem', display: 'flex', gap: '2rem' }}>
-          <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
-            <input type="checkbox" checked={soft} onChange={e => setSoft(e.target.checked)} /> <span>Soft edges</span>
-          </label>
-          <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
-            <input type="checkbox" checked={branding} onChange={e => setBranding(e.target.checked)} /> <span>Deepling branding</span>
-          </label>
-          <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
-            <input type="checkbox" checked={force} onChange={e => setForce(e.target.checked)} /> <span>强制重绘</span>
-          </label>
+        <div className="space-y-3">
+          <Label htmlFor="script" className="text-base font-bold">播客脚本 (Script)</Label>
+          <Textarea 
+            id="script" 
+            value={script}
+            onChange={e => setScript(e.target.value)}
+            rows={14} 
+            className="text-base p-4 resize-none"
+            placeholder="林深：大家好，我是林深。&#10;若水：我是若水，欢迎收听 Natural AI 播客。"
+          />
         </div>
 
-        <div style={{ marginTop: '2.5rem' }}>
-          <button disabled={loading} type="submit" style={{ background: 'var(--theme-gradient)', color: 'white', border: 'none', padding: '0.8rem 2rem', borderRadius: '100px', fontWeight: 700, cursor: loading ? 'wait' : 'pointer', fontSize: '1rem', boxShadow: '0 4px 12px rgba(14,165,233,0.2)', opacity: loading ? 0.7 : 1 }}>
-            {loading ? '渲染中...' : '渲染音频'}
-          </button>
-          <p className="hint" style={{ fontSize: '0.8rem', color: 'var(--muted-foreground)', marginTop: '0.75rem' }}>大约需要 30–60 秒处理 TTS 合成</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="flex items-center space-x-3 bg-muted/20 p-3 rounded-lg border border-transparent hover:border-border transition-colors">
+            <Checkbox id="soft" checked={soft} onCheckedChange={(v) => setSoft(!!v)} />
+            <Label htmlFor="soft" className="cursor-pointer">Soft Edges</Label>
+          </div>
+          <div className="flex items-center space-x-3 bg-muted/20 p-3 rounded-lg border border-transparent hover:border-border transition-colors">
+            <Checkbox id="branding" checked={branding} onCheckedChange={(v) => setBranding(!!v)} />
+            <Label htmlFor="branding" className="cursor-pointer">Deepling Intro</Label>
+          </div>
+          <div className="flex items-center space-x-3 bg-muted/20 p-3 rounded-lg border border-transparent hover:border-border transition-colors">
+            <Checkbox id="force" checked={force} onCheckedChange={(v) => setForce(!!v)} />
+            <Label htmlFor="force" className="cursor-pointer">强制重绘</Label>
+          </div>
+        </div>
+
+        <div className="pt-4">
+          <Button 
+            disabled={loading} 
+            type="submit" 
+            variant="gradient" 
+            size="pill" 
+            className="h-12 text-base font-bold w-full md:w-auto"
+          >
+            {loading ? <Headphones className="animate-pulse mr-2" /> : <Music className="mr-2" />}
+            {loading ? '音频合成中...' : '渲染音频'}
+          </Button>
+          <p className="text-xs text-muted-foreground mt-4 text-center md:text-left">大约需要 30–60 秒，完成后可立即试听。</p>
         </div>
       </form>
 
       {error && (
-        <div className="msg error" style={{ marginTop: '2rem', padding: '1.5rem', background: '#fff1f2', borderRadius: '12px', color: '#e11d48', border: '1px solid #fda4af' }}>
-          <pre style={{ fontSize: '0.85rem', whiteSpace: 'pre-wrap' }}>{error}</pre>
+        <div className="mt-8 p-4 bg-destructive/10 border border-destructive/20 rounded-xl text-destructive text-sm font-mono overflow-auto">
+          {error}
         </div>
       )}
 
       {result && (
-        <div className="result" style={{ marginTop: '5rem', borderTop: '1px solid var(--border)', paddingTop: '3rem' }}>
-          <div className="result-header" style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <h3 style={{ fontWeight: 800 }}>合成结果</h3>
-            <span style={{ color: 'var(--muted-foreground)', fontSize: '0.9rem' }}>{result.line_count} lines rendered</span>
+        <div className="mt-16 pt-10 border-t animate-in fade-in slide-in-from-bottom-4 duration-700">
+          <div className="flex items-center justify-between mb-8">
+            <h3 className="text-2xl font-black">合成结果</h3>
+            <Badge variant="secondary" className="px-3 py-1 font-mono">{result.line_count} LINES</Badge>
           </div>
 
           {result.audio && (
-            <div className="audio-results" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <div className="space-y-4">
               {Object.entries(result.audio).map(([key, info]: [string, any]) => (
-                <div key={key} className="audio-item" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '1.25rem', background: 'var(--card-bg)', borderRadius: '12px', border: '1px solid var(--border)' }}>
-                  <div style={{ width: '80px', fontWeight: 700, textTransform: 'uppercase', fontSize: '0.8rem', color: 'var(--theme-blue)' }}>{key}</div>
-                  <audio controls style={{ flex: 1, height: '36px' }}>
+                <div key={key} className="flex flex-col sm:flex-row items-center gap-6 p-6 bg-muted/30 rounded-2xl border transition-all hover:shadow-md">
+                  <div className="flex flex-col items-center sm:items-start gap-1">
+                    <span className="text-[0.7rem] font-black uppercase tracking-widest text-emerald-600 leading-none">{key} VERSION</span>
+                    <span className="text-[0.65rem] text-muted-foreground">{info.size}</span>
+                  </div>
+                  <audio controls className="flex-1 h-10">
                     <source src={info.url} type="audio/mpeg" />
                   </audio>
-                  <a href={info.url} download style={{ color: 'var(--foreground)', textDecoration: 'none' }}>
-                    <Download size={20} />
-                  </a>
+                  <Button asChild variant="outline" size="icon" className="shrink-0 rounded-full">
+                    <a href={info.url} download>
+                      <Download size={18} />
+                    </a>
+                  </Button>
                 </div>
               ))}
             </div>
           )}
 
-          <div style={{ marginTop: '2.5rem' }}>
-            <a href={`/run?id=${result.run_id}`} style={{ color: 'var(--theme-blue)', fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <ExternalLink size={16} /> 查看完整详情
-            </a>
+          <div className="mt-12 flex justify-center">
+            <Button asChild variant="link" className="text-emerald-600 hover:text-emerald-700 font-bold">
+              <a href={`/run/?id=${result.run_id}`} className="flex items-center gap-2">
+                <ExternalLink size={16} /> 查看该 Run 的完整详情
+              </a>
+            </Button>
           </div>
         </div>
       )}

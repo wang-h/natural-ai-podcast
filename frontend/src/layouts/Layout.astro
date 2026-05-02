@@ -2,6 +2,7 @@
 import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import GlobalPlayer from '../components/GlobalPlayer';
+import { Mic, FileText, Headphones, Music, Mic2, Rss, Globe, Code, Moon, Sun, LayoutGrid } from 'lucide-react';
 
 interface Props {
   title: string;
@@ -19,7 +20,6 @@ const { title } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script is:inline>
       const theme = (() => {
         if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
@@ -42,58 +42,105 @@ const { title } = Astro.props;
   </head>
   <body>
     <div class="app-container">
+      <!-- 1. Slim Sidebar -->
       <aside class="slim-sidebar">
         <div class="vertical-text"><span>主播</span><b>林深 / 若水</b></div>
-        <div class="sidebar-footer" style="padding-bottom: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; align-items: center;">
-          <a href="https://github.com/wang-h/natural-ai-podcast" target="_blank" style="color: var(--muted-foreground);"><i data-lucide="github"></i></a>
-          <button id="theme-toggle" style="background:none; border:none; cursor:pointer; color: var(--muted-foreground); padding:0;"><i data-lucide="moon" id="theme-icon"></i></button>
+        <div class="sidebar-footer flex flex-col gap-6 items-center pb-10">
+          <a href="https://github.com/wang-h/natural-ai-podcast" target="_blank" class="text-muted-foreground hover:text-foreground transition-colors">
+            <Code size={20} />
+          </a>
+          <button id="theme-toggle" class="text-muted-foreground hover:text-foreground transition-colors cursor-pointer p-0 border-none bg-none">
+            <Moon size={20} className="dark:hidden" />
+            <Sun size={20} className="hidden dark:block" />
+          </button>
         </div>
       </aside>
 
+      <!-- 2. Info Sidebar -->
       <section class="info-sidebar">
         <div class="podcast-cover-box">
           <div class="podcast-cover-content">
-            <i data-lucide="mic"></i>
-            <div class="brand-text">
+            <Mic className="text-white w-16 h-16 drop-shadow-2xl" />
+            <div class="brand-text mt-4">
               <span class="brand-main">Natural AI</span>
               <span class="brand-sub">Podcast</span>
             </div>
           </div>
         </div>
-        <div class="podcast-info"><h1>natural-ai-podcast</h1></div>
         
-        <div class="info-sections">
+        <div class="podcast-info">
+          <h1 class="text-2xl font-black bg-gradient-to-br from-emerald-400 to-sky-500 bg-clip-text text-transparent">natural-ai-podcast</h1>
+        </div>
+        
+        <div class="info-sections space-y-12">
           <section>
-            <div class="section-label"><div class="square-icon"></div> 关于</div>
-            <div class="description-box" style="font-size: 0.95rem; line-height: 1.8; opacity: 0.9;">
+            <div class="section-label">
+              <div class="square-icon"></div>
+              <span>关于</span>
+            </div>
+            <div class="description-box text-sm leading-relaxed opacity-80">
               <b>林深 & 若水</b> 的深夜对谈。<br/>
               在这里，AI 不再是冰冷的算法，而是带有<b>呼吸、犹豫和情感</b>的灵魂。<br/>
-              我们追求极致的<b>自然感</b>，复刻最真实的临场气场，让每一次收听都宛如挚友对坐，为你带来有温度的科技解读。
+              我们追求极致的<b>自然感</b>，复刻最真实的临场气场，让每一次收听都宛如挚友对坐。
             </div>
           </section>
 
-          <section style="margin-top: 2.5rem;">
-            <div class="section-label"><div class="square-icon"></div> 功能</div>
-            <nav class="nav-links">
-              <a href="/script/" class="nav-item"><i data-lucide="file-text"></i><span>Text → Script</span></a>
-              <a href="/render/" class="nav-item"><i data-lucide="headphones"></i><span>Script → Audio</span></a>
+          <section>
+            <div class="section-label">
+              <div class="square-icon bg-gradient-to-r from-blue-500 to-emerald-500"></div>
+              <span>功能</span>
+            </div>
+            <nav class="flex flex-col gap-1">
+              <a href="/script/" class="nav-item group">
+                <FileText size={18} className="text-sky-500 group-hover:scale-110 transition-transform" />
+                <span>Text → Script</span>
+              </a>
+              <a href="/render/" class="nav-item group">
+                <Headphones size={18} className="text-emerald-500 group-hover:scale-110 transition-transform" />
+                <span>Script → Audio</span>
+              </a>
+              <a href="/" class="nav-item group">
+                <LayoutGrid size={18} className="text-indigo-500 group-hover:scale-110 transition-transform" />
+                <span>返回首页</span>
+              </a>
             </nav>
           </section>
 
-          <section style="margin-top: 2.5rem;">
-            <div class="section-label"><div class="square-icon" style="background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);"></div> 订阅播放</div>
-            <nav class="nav-links">
-              <a href="#" class="nav-item"><i data-lucide="music"></i><span>网易云音乐</span></a>
-              <a href="https://www.xiaoyuzhoufm.com/podcast/67b06023606e5c59409cd9ba" target="_blank" class="nav-item"><i data-lucide="mic-2"></i><span>小宇宙</span></a>
-              <a href="/rss.xml" class="nav-item"><i data-lucide="rss"></i><span>RSS Feed</span></a>
+          <section>
+            <div class="section-label">
+              <div class="square-icon bg-gradient-to-r from-emerald-500 to-blue-500"></div>
+              <span>订阅</span>
+            </div>
+            <nav class="flex flex-col gap-1">
+              <a href="#" class="nav-item group">
+                <Music size={18} className="text-red-400" />
+                <span>网易云音乐</span>
+              </a>
+              <a href="https://www.xiaoyuzhoufm.com/podcast/67b06023606e5c59409cd9ba" target="_blank" class="nav-item group">
+                <Mic2 size={18} className="text-sky-400" />
+                <span>小宇宙</span>
+              </a>
+              <a href="/rss.xml" class="nav-item group">
+                <Rss size={18} className="text-orange-400" />
+                <span>RSS Feed</span>
+              </a>
+              <a href="https://www.deepling.tech" target="_blank" class="nav-item group">
+                <Globe size={18} className="text-indigo-400" />
+                <span>深灵.Tech</span>
+              </a>
             </nav>
           </section>
         </div>
       </section>
 
+      <!-- 3. Main Content -->
       <main class="main-content">
         <slot />
-        <footer><p>natural-ai-podcast · Powered by MiniMax TTS</p></footer>
+        <footer class="py-20 text-center border-t">
+          <p class="text-xs font-bold text-muted-foreground uppercase tracking-widest">
+            natural-ai-podcast · Powered by MiniMax TTS
+          </p>
+        </footer>
       </main>
     </div>
 
@@ -102,8 +149,6 @@ const { title } = Astro.props;
     
     <script>
       function init() {
-        if (window.lucide) window.lucide.createIcons();
-        
         const handleToggleClick = () => {
           const element = document.documentElement;
           element.classList.toggle('dark');

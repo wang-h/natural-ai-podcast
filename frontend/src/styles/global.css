@@ -1,4 +1,72 @@
-/* natural-ai-podcast — Hacker Podcast Layout + Blue-Green Gradient + Global Player + Dark Mode */
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar-background);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these characters.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--border, currentColor);
+  }
+}
 
 :root {
   --background: #ffffff;
@@ -11,13 +79,23 @@
   --theme-green: #10b981;
   --theme-gradient: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
   
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
-
   --sidebar-bg: #ffffff;
   --card-bg: #fafafa;
   --player-bg: rgba(255, 255, 255, 0.95);
   --input-bg: #ffffff;
+
+  /* shadcn generic */
+  --primary: #09090b;
+  --primary-foreground: #fafafa;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #18181b;
+  --accent: #f4f4f5;
+  --accent-foreground: #18181b;
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
+  --input: #e4e4e7;
+  --ring: #09090b;
+  --radius: 0.5rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -32,146 +110,75 @@
     --card-bg: #111113;
     --player-bg: rgba(9, 9, 11, 0.95);
     --input-bg: #18181b;
+
+    /* shadcn generic dark */
+    --primary: #fafafa;
+    --primary-foreground: #09090b;
+    --secondary: #18181b;
+    --secondary-foreground: #fafafa;
+    --accent: #18181b;
+    --accent-foreground: #fafafa;
+    --ring: #d4d4d8;
   }
 }
 
 :root.dark {
-  --background: #09090b;
-  --foreground: #fafafa;
-  --muted: #18181b;
-  --muted-foreground: #a1a1aa;
-  --border: #27272a;
-  
-  --sidebar-bg: #09090b;
-  --card-bg: #111113;
-  --player-bg: rgba(9, 9, 11, 0.95);
-  --input-bg: #18181b;
+    --background: #09090b;
+    --foreground: #fafafa;
+    --muted: #18181b;
+    --muted-foreground: #a1a1aa;
+    --border: #27272a;
+    --sidebar-bg: #09090b;
+    --card-bg: #111113;
+    --player-bg: rgba(9, 9, 11, 0.95);
+    --input-bg: #18181b;
+    --primary: #fafafa;
+    --primary-foreground: #09090b;
 }
 
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
+  @apply antialiased text-foreground bg-background;
   font-family: var(--font-sans);
-  background: var(--background);
-  color: var(--foreground);
   line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  padding-bottom: 80px; /* Space for fixed player */
+  padding-bottom: 80px;
   transition: background-color 0.3s, color 0.3s;
 }
 
-.lucide {
-  width: 1.25rem;
-  height: 1.25rem;
-  stroke-width: 2;
-  stroke: currentColor;
-  fill: none;
-  display: inline-block;
-  vertical-align: middle;
-}
+/* Original Project Components Refined with Tailwind */
 
-/* Layout */
 .app-container {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+  @apply flex flex-col min-h-screen;
 }
 
 @media (min-width: 768px) {
   .app-container {
-    flex-direction: row;
-    position: fixed;
-    inset: 0;
-    bottom: 80px; /* Room for player */
-    overflow: hidden;
+    @apply flex-row fixed inset-0 overflow-hidden;
+    bottom: 80px;
   }
 }
 
-/* Sidebar 1: Slim */
 .slim-sidebar {
-  display: none;
-  width: 64px;
-  flex-shrink: 0;
-  border-right: 1px solid var(--border);
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2.5rem 0;
-  background: var(--sidebar-bg);
+  @apply hidden md:flex w-16 flex-shrink-0 border-r flex-col items-center justify-between py-10 bg-[var(--sidebar-bg)];
 }
 
-@media (min-width: 768px) {
-  .slim-sidebar { display: flex; }
-}
-
-.vertical-text {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  display: flex;
-  gap: 1.5rem;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  font-weight: 500;
-  color: var(--muted-foreground);
-  text-transform: uppercase;
-}
-
-.vertical-text b { color: var(--foreground); font-weight: 700; }
-
-/* Sidebar 2: Info */
 .info-sidebar {
-  width: 100%;
-  border-bottom: 1px solid var(--border);
-  background: var(--sidebar-bg);
-  padding: 2.5rem 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-}
-
-@media (min-width: 768px) {
-  .info-sidebar {
-    width: 320px;
-    border-bottom: none;
-    border-right: 1px solid var(--border);
-    overflow-y: auto;
-    padding: 3rem 2rem;
-  }
+  @apply w-full md:w-80 lg:w-96 border-b md:border-b-0 md:border-r bg-[var(--sidebar-bg)] p-10 md:p-12 lg:p-16 flex flex-col gap-10 overflow-y-auto;
 }
 
 .podcast-cover-box {
-  width: 100%;
-  max-width: 280px;
-  aspect-ratio: 1 / 1;
-  flex-shrink: 0;
-  border-radius: 2.25rem;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Ultra-Vibrant Base */
-  background: #0ea5e9;
-  box-shadow: 
-    0 20px 50px -12px rgba(14, 165, 233, 0.4),
-    inset 0 0 40px rgba(255, 255, 255, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  margin: 0 auto;
+  @apply aspect-square w-full rounded-[2.25rem] overflow-hidden relative flex items-center justify-center bg-[#0ea5e9] shadow-lg border border-white/40 flex-shrink-0;
+  box-shadow: 0 20px 50px -12px rgba(14, 165, 233, 0.4), inset 0 0 40px rgba(255, 255, 255, 0.3);
 }
 
-/* High-Saturation Fluid Animation */
 .podcast-cover-box::before {
   content: "";
-  position: absolute;
-  inset: -50%;
+  @apply absolute -inset-[50%] opacity-100;
   background: 
     radial-gradient(circle at 30% 30%, #2dd4bf 0%, transparent 50%),
     radial-gradient(circle at 70% 20%, #38bdf8 0%, transparent 45%),
     radial-gradient(circle at 40% 80%, #10b981 0%, transparent 50%),
     radial-gradient(circle at 80% 70%, #6366f1 0%, transparent 45%);
   filter: blur(35px);
-  opacity: 1;
   animation: vibrant-flow 10s infinite alternate ease-in-out;
 }
 
@@ -180,334 +187,22 @@ body {
   100% { transform: rotate(20deg) scale(1.15); }
 }
 
-/* Unified Vibrant Cover */
-.podcast-cover-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* Text protection glow */
-  background: radial-gradient(circle at center, rgba(0,0,0,0.1) 0%, transparent 80%);
-}
+.brand-main { @apply text-[1.8rem] font-[900] tracking-tight text-white; text-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+.brand-sub { @apply text-[0.75rem] font-[800] tracking-[0.5em] uppercase text-white/95 mt-1 ml-[0.5em]; }
 
-.podcast-cover-content i {
-  width: 4rem;
-  height: 4rem;
-  color: white;
-  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
-  margin-bottom: 0.75rem;
-  stroke-width: 1.25;
-}
+.main-content { @apply flex-1 overflow-y-auto bg-background; }
+.list-header { @apply p-10 lg:px-20 lg:py-16 border-b; }
+.episode-item { @apply flex flex-col gap-3 p-10 lg:px-20 lg:py-14 border-b transition-colors hover:bg-[var(--card-bg)]; }
+.ep-title { @apply text-3xl font-[800] tracking-tight; }
+.ep-title a:hover { @apply bg-[var(--theme-gradient)] bg-clip-text text-transparent; }
 
-.brand-text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.1rem;
-}
-
-.brand-main {
-  font-size: 1.8rem;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  color: white;
-  margin: 0;
-  line-height: 1.1;
-  text-shadow: 0 4px 15px rgba(0,0,0,0.15);
-}
-
-.brand-sub {
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.5em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.95);
-  margin-top: 0.4rem;
-  margin-left: 0.5em;
-}
-
-/* Glossy Surface Shine */
-.podcast-cover-box::after {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
-  z-index: 3;
-  pointer-events: none;
-}
-
-/* Sidebar Branding Adjustments */
-.podcast-info h1 {
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  text-align: center;
-  margin-top: 1.5rem;
-  background: var(--theme-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-@media (min-width: 768px) {
-  .podcast-info h1 { text-align: left; }
-}
-
-.section-label {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: var(--muted-foreground);
-  margin-bottom: 1.25rem;
-}
-
-.square-icon {
-  width: 10px;
-  height: 10px;
-  border-radius: 2px;
-  background: var(--theme-gradient);
-}
-
-.nav-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.nav-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.6rem 0.75rem;
-  margin: 0 -0.75rem;
-  color: var(--foreground);
-  text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 500;
-  border-radius: 8px;
-  transition: background 0.2s;
-}
-
-.nav-item:hover {
-  background: var(--muted);
-}
-
-.nav-item .lucide {
-  width: 1.1rem;
-  height: 1.1rem;
-  color: var(--theme-blue);
-}
-
-/* Main Content */
-.main-content {
-  flex: 1;
-  overflow-y: auto;
-  background: var(--background);
-}
-
-.list-header {
-  padding: 2.5rem 2rem;
-  border-bottom: 1px solid var(--border);
-}
-
-@media (min-width: 1024px) {
-  .list-header { padding: 4rem 5rem; }
-}
-
-.list-header h2 {
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--muted-foreground);
-}
-
-.episode-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding: 2.5rem 2rem;
-  border-bottom: 1px solid var(--border);
-  transition: background 0.1s;
-}
-
-.episode-item:hover {
-  background: var(--card-bg);
-}
-
-@media (min-width: 1024px) {
-  .episode-item { padding: 3.5rem 5rem; }
-}
-
-.ep-date {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 500;
-  color: var(--muted-foreground);
-}
-
-.ep-title {
-  font-size: 1.75rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-}
-
-.ep-title a {
-  color: var(--foreground);
-  text-decoration: none;
-}
-
-.ep-title a:hover {
-  background: var(--theme-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.ep-summary {
-  font-size: 1rem;
-  color: var(--muted-foreground);
-  line-height: 1.6;
-  max-width: 600px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.ep-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 1rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
-.play-btn-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  cursor: pointer;
-  color: var(--foreground);
-  transition: opacity 0.2s;
-}
-
-.play-btn-wrapper:hover {
-  opacity: 0.7;
-}
-
-.play-btn-wrapper .lucide-play {
-  fill: var(--theme-blue);
-  stroke: var(--theme-blue);
-  width: 1rem;
-  height: 1rem;
-}
-
-.action-link {
-  color: var(--muted-foreground);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.action-link:hover {
-  color: var(--foreground);
-  text-decoration: underline;
-}
-
-/* Global Player Bar */
 .global-player {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background: var(--player-bg);
+  @apply fixed bottom-0 left-0 right-0 h-20 bg-[var(--player-bg)] border-t flex items-center px-8 z-[200] translate-y-full transition-transform duration-300;
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-top: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  padding: 0 2rem;
-  z-index: 200;
-  transform: translateY(100%);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  color: var(--foreground);
 }
+.global-player.active { @apply translate-y-0; }
 
-.global-player.active {
-  transform: translateY(0);
-}
+.square-icon { @apply w-2.5 h-2.5 rounded-[2px] bg-[var(--theme-gradient)]; }
+.section-label { @apply flex items-center gap-2.5 font-mono text-[0.75rem] font-semibold uppercase text-muted-foreground mb-5; }
 
-.player-info {
-  width: 300px;
-  overflow: hidden;
-}
-
-.player-title {
-  font-weight: 700;
-  font-size: 0.9rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.player-meta {
-  font-size: 0.75rem;
-  color: var(--muted-foreground);
-}
-
-.player-controls {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.main-audio-element {
-  width: 100%;
-  max-width: 600px;
-  height: 36px;
-}
-
-/* Forms & Features */
-.feature-form textarea, 
-.feature-form select, 
-.feature-form input[type="text"] {
-  background: var(--input-bg);
-  color: var(--foreground);
-  border: 1px solid var(--border);
-}
-
-/* Badge */
-.badge {
-  background: var(--theme-gradient);
-  color: #fff;
-  font-size: 0.65rem;
-  padding: 0.15rem 0.4rem;
-  border-radius: 4px;
-  vertical-align: middle;
-  margin-left: 0.5rem;
-  font-weight: 700;
-}
-
-footer {
-  padding: 4rem 2rem;
-  text-align: center;
-  font-size: 0.8rem;
-  color: var(--muted-foreground);
-  border-top: 1px solid var(--border);
-}
-
-@media (max-width: 767px) {
-  .episode-item { padding: 2rem 1.5rem; }
-  .ep-title { font-size: 1.4rem; }
-  .player-info { display: none; }
-}
+.nav-item { @apply flex items-center gap-3 px-3 py-2.5 -mx-3 text-foreground no-underline text-[0.95rem] font-medium rounded-lg transition-colors hover:bg-muted; }
