@@ -40,8 +40,13 @@ RUNS_DIR.mkdir(parents=True, exist_ok=True)
 
 app = FastAPI(title="natural-ai-podcast-api")
 
-# Mount audio files
+# 1. Mount audio files
 app.mount("/runs", StaticFiles(directory=str(RUNS_DIR)), name="runs")
+
+# 2. Mount Astro's internal static assets directory if it exists
+ASTRO_ASSETS = FRONTEND_DIST / "_astro"
+if ASTRO_ASSETS.exists():
+    app.mount("/_astro", StaticFiles(directory=str(ASTRO_ASSETS)), name="astro_assets")
 
 # API Endpoints
 @app.get("/api/runs")
@@ -215,15 +220,36 @@ async def api_render_episode(req: RenderRequest):
     except Exception as exc:
         return JSONResponse(content={"success": False, "error": str(exc), "log": "\n".join(logs)}, status_code=500)
 
-# Serve Frontend SPA
+# Serve Frontend Pages & Static Assets
 @app.get("/{full_path:path}")
 async def serve_frontend(full_path: str):
-    if FRONTEND_DIST.exists():
-        path = FRONTEND_DIST / full_path
-        if path.is_file():
-            return FileResponse(path)
-        return FileResponse(FRONTEND_DIST / "index.html")
-    return JSONResponse({"message": "Frontend not built yet. Run 'npm run build' in frontend directory."}, status_code=404)
+    if not FRONTEND_DIST.exists():
+        return JSONResponse({"message": "Frontend not built. Run 'npm run build' in frontend directory."}, status_code=404)
+
+    # Clean up the path
+    clean_path = full_path.strip("/")
+
+    # 1. Try to serve the exact file (e.g. css, js, icons)
+    file_path = FRONTEND_DIST / full_path
+    if file_path.is_file():
+        return FileResponse(file_path)
+
+    # 2. Try directory mapping (e.g. /script -> /script/index.html)
+    # Check both original and cleaned path
+    for p in [full_path, clean_path]:
+        if not p: continue
+        dir_index = FRONTEND_DIST / p / "index.html"
+        if dir_index.is_file():
+            return FileResponse(dir_index)
+
+    # 3. Special case for root-level pages built by Astro
+    if clean_path:
+        root_page = FRONTEND_DIST / f"{clean_path}.html"
+        if root_page.is_file():
+            return FileResponse(root_page)
+
+    # 4. Fallback to root index.html
+    return FileResponse(FRONTEND_DIST / "index.html")
 
 if __name__ == "__main__":
     import uvicorn
