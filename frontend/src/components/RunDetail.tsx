@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Download, ScrollText, ChevronLeft, Sparkles } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Download, ScrollText, ChevronLeft, Sparkles, Copy, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';

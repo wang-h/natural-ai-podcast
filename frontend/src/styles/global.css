@@ -94,15 +94,16 @@ body { @apply antialiased text-foreground bg-background; font-family: var(--font
   background: linear-gradient(to bottom, transparent, var(--border) 10%, var(--border) 90%, transparent);
 }
 
-.list-header { @apply p-10 md:p-20 lg:px-24 lg:pt-32 lg:pb-24 border-b relative overflow-hidden; }
-.list-header h2 { @apply text-6xl md:text-8xl font-[1000] tracking-tighter text-foreground leading-none relative z-10; }
+.list-header { @apply p-10 md:p-16 lg:px-24 lg:pt-20 lg:pb-12 border-b relative overflow-hidden; }
+.list-header h2 { @apply text-3xl md:text-5xl font-[1000] tracking-tighter text-foreground leading-none relative z-10; }
 .list-header::before {
-  content: "UPDATES"; @apply absolute -top-4 -left-4 text-[12rem] font-black opacity-[0.02] select-none pointer-events-none;
+  content: "UPDATES"; @apply absolute -top-2 -left-4 text-8xl font-black opacity-[0.02] select-none pointer-events-none;
 }
 
 .episode-list { @apply px-10 md:px-16 lg:px-24 relative z-10; }
-.episode-item { @apply py-12 md:py-16 border-b border-border/60 transition-all duration-500; }
+.episode-item { @apply py-14 md:py-20 border-b border-border/60 transition-all duration-500; }
 .ep-title { @apply text-xl md:text-2xl font-[950] tracking-tight leading-tight mb-4; }
+
 
 .global-player { @apply fixed bottom-0 left-0 right-0 h-20 bg-[var(--player-bg)] border-t flex items-center px-8 z-[200] translate-y-full transition-all duration-500 ease-out; backdrop-filter: blur(20px); }
 .global-player.active { @apply translate-y-0; }
