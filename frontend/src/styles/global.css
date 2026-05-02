@@ -83,27 +83,36 @@ body { @apply antialiased text-foreground bg-background; font-family: var(--font
 
 .main-content { 
   @apply flex-1 overflow-y-auto relative bg-background;
+  /* Digital Grid + Subtle Mesh Gradient */
   background-image: 
-    radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.03) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.03) 0px, transparent 50%);
+    linear-gradient(rgba(0,0,0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0, 0.03) 1px, transparent 1px),
+    radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.08) 0px, transparent 50%);
+  background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%;
 }
 
-.episode-list::before {
-  content: "";
-  @apply absolute left-0 top-0 bottom-0 w-px hidden md:block;
-  background: linear-gradient(to bottom, transparent, var(--border) 10%, var(--border) 90%, transparent);
+:is(.dark *) .main-content {
+  background-image: 
+    linear-gradient(rgba(255,255,255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255, 0.03) 1px, transparent 1px),
+    radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.1) 0px, transparent 50%);
 }
 
-.list-header { @apply p-10 md:p-16 lg:px-24 lg:pt-20 lg:pb-12 border-b relative overflow-hidden; }
-.list-header h2 { @apply text-3xl md:text-5xl font-[1000] tracking-tighter text-foreground leading-none relative z-10; }
+.list-header { @apply p-10 md:p-16 lg:px-24 lg:pt-24 lg:pb-12 border-b relative overflow-hidden bg-background/40 backdrop-blur-md; }
+.list-header h2 { @apply text-xl md:text-2xl font-black uppercase tracking-[0.4em] text-foreground/80 leading-none relative z-10 flex items-center gap-4; }
+.list-header h2::before {
+  content: ""; @apply w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_12px_rgba(16,185,129,1)];
+}
+
 .list-header::before {
-  content: "UPDATES"; @apply absolute -top-2 -left-4 text-8xl font-black opacity-[0.02] select-none pointer-events-none;
+  content: "CHRONICLE"; @apply absolute -top-4 -left-4 text-9xl font-black opacity-[0.03] select-none pointer-events-none tracking-tighter;
 }
 
 .episode-list { @apply px-10 md:px-16 lg:px-24 relative z-10; }
 .episode-item { @apply py-14 md:py-20 border-b border-border/60 transition-all duration-500; }
 .ep-title { @apply text-xl md:text-2xl font-[950] tracking-tight leading-tight mb-4; }
-
 
 .global-player { @apply fixed bottom-0 left-0 right-0 h-20 bg-[var(--player-bg)] border-t flex items-center px-8 z-[200] translate-y-full transition-all duration-500 ease-out; backdrop-filter: blur(20px); }
 .global-player.active { @apply translate-y-0; }
@@ -111,9 +120,9 @@ body { @apply antialiased text-foreground bg-background; font-family: var(--font
 .square-icon { @apply w-2 h-2 rounded-[2px] bg-[var(--theme-gradient)]; }
 .section-label { @apply flex items-center gap-2 font-mono text-[0.7rem] font-bold uppercase text-muted-foreground mb-4 tracking-widest; }
 
-.nav-item { @apply flex items-center gap-3 px-3 py-2 -mx-3 text-foreground no-underline text-[0.9rem] font-semibold rounded-lg transition-all hover:bg-muted; }
+.nav-item { @apply flex items-center gap-3 px-3 py-2.5 -mx-3 text-foreground no-underline text-[0.9rem] font-semibold rounded-lg transition-all hover:bg-muted; }
 
-.vertical-text { writing-mode: vertical-rl; text-orientation: mixed; @apply flex gap-6 text-[0.8rem] font-bold tracking-[0.1em] text-muted-foreground uppercase; }
+.vertical-text { writing-mode: vertical-rl; text-orientation: mixed; @apply flex gap-8 text-[0.8rem] font-bold tracking-[0.1em] text-muted-foreground uppercase; }
 .vertical-text b { @apply text-foreground font-black text-[0.95rem]; }
 
 .btn-gradient { @apply relative overflow-hidden transition-all duration-300 active:scale-95 bg-gradient-to-br from-[#10b981] to-[#3b82f6] border border-white/20 shadow-md; }
