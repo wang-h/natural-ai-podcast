@@ -78,27 +78,27 @@ export default function AudioRenderer() {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            { id: 'soft', label: 'Soft Edges', state: soft, setter: setSoft },
-            { id: 'branding', label: 'Deepling Intro', state: branding, setter: setBranding },
-            { id: 'force', label: '强制重绘', state: force, setter: setForce }
-          ].map(item => (
-            <div key={item.id} className="flex items-center space-x-3 bg-muted/30 p-4 rounded-xl border border-transparent hover:border-border transition-all cursor-pointer">
-              <Checkbox id={item.id} checked={item.state} onCheckedChange={(v) => item.setter(!!v)} className="w-5 h-5" />
-              <Label htmlFor={item.id} className="text-sm font-bold cursor-pointer">{item.label}</Label>
-            </div>
-          ))}
-        </div>
+        <div className="flex flex-col md:flex-row items-stretch md:items-center gap-4 bg-muted/30 p-4 rounded-2xl border">
+          <div className="flex-1 flex flex-wrap items-center gap-6">
+            {[
+              { id: 'soft', label: 'Soft Edges', state: soft, setter: setSoft },
+              { id: 'branding', label: 'Intro', state: branding, setter: setBranding },
+              { id: 'force', label: '强制重绘', state: force, setter: setForce }
+            ].map(item => (
+              <div key={item.id} className="flex items-center space-x-2 cursor-pointer">
+                <Checkbox id={item.id} checked={item.state} onCheckedChange={(v) => item.setter(!!v)} className="w-4 h-4 rounded" />
+                <Label htmlFor={item.id} className="text-xs font-bold cursor-pointer opacity-70 tracking-tight">{item.label}</Label>
+              </div>
+            ))}
+          </div>
 
-        <div className="pt-4">
           <Button 
             disabled={loading} 
             type="submit" 
             variant="gradient" 
-            className="h-12 px-8 text-base font-black rounded-xl w-full md:w-auto shadow-xl"
+            className="h-11 px-8 text-sm font-black rounded-xl w-full md:w-auto shadow-lg"
           >
-            {loading ? <Headphones className="animate-pulse mr-2" /> : <Music className="mr-2" />}
+            {loading ? <Headphones className="animate-pulse mr-2" size={16} /> : <Music className="mr-2" size={16} />}
             {loading ? '正在合成...' : '渲染音频'}
           </Button>
         </div>
