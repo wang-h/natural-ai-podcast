@@ -71,11 +71,11 @@ export default function ScriptGenerator() {
           />
         </div>
 
-        <div className="flex flex-col md:flex-row gap-4 md:items-end bg-muted/30 p-6 rounded-[2rem] border">
-          <div className="md:w-72 lg:w-80 space-y-3">
-            <Label htmlFor="model" className="text-xs font-black uppercase tracking-widest opacity-40">LLM Model</Label>
+        <div className="flex flex-col md:flex-row items-stretch md:items-center gap-4 bg-muted/30 p-4 rounded-2xl border">
+          <div className="flex-1 flex flex-col md:flex-row md:items-center gap-4">
+            <Label htmlFor="model" className="text-xs font-black uppercase tracking-widest opacity-40 shrink-0 md:w-24">LLM Model</Label>
             <Select value={model} onValueChange={setModel}>
-              <SelectTrigger className="w-full h-12 bg-background rounded-xl text-sm font-bold border-2">
+              <SelectTrigger className="w-full h-11 bg-background rounded-xl text-sm font-bold border-2">
                 <SelectValue placeholder="选择模型" />
               </SelectTrigger>
               <SelectContent>
@@ -91,12 +91,13 @@ export default function ScriptGenerator() {
             disabled={loading} 
             type="submit" 
             variant="gradient" 
-            className="h-12 px-8 text-base font-black rounded-xl w-full md:w-auto shadow-xl shrink-0"
+            className="h-11 px-8 text-sm font-black rounded-xl w-full md:w-auto shadow-lg"
           >
-            {loading ? <Sparkles className="animate-spin mr-2" /> : <Wand2 className="mr-2" />}
+            {loading ? <Sparkles className="animate-spin mr-2" size={16} /> : <Wand2 className="mr-2" size={16} />}
             {loading ? '生成中...' : '生成脚本'}
           </Button>
         </div>
+
       </form>
 
       {result && (
