@@ -71,8 +71,10 @@ body { @apply antialiased text-foreground bg-background; font-family: var(--font
 @keyframes vibrant-flow { 0% { transform: rotate(0deg) scale(1); } 100% { transform: rotate(15deg) scale(1.1); } }
 .podcast-cover-haze { @apply absolute inset-0 w-full h-full rounded-2xl flex flex-col items-center justify-center z-10; background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.05); }
 
+.brand-text { @apply flex flex-col items-center gap-1; }
 .brand-main { @apply text-[1.4rem] font-black tracking-tight text-white; }
-.brand-sub { @apply text-[0.6rem] font-bold tracking-[0.6em] uppercase text-white/70 mt-1 ml-[0.6em]; }
+.brand-sub { @apply text-[0.6rem] font-bold tracking-[0.6em] uppercase text-white/70 mt-1 ml-[0.5em]; }
+
 
 /* PURE CONTENT AREA */
 .main-content { @apply flex-1 overflow-y-auto bg-background relative; }
