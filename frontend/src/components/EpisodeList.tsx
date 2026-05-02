@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Play, Database, MessageSquare, Clock } from 'lucide-react';
+import { Play, Database, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 
-export default function EpisodeList({ handlePlay }: { handlePlay: (url: string, title: string, date: string) => void }) {
+function playEpisode(url: string, title: string, date: string) {
+  if (!url) return;
+  window.dispatchEvent(new CustomEvent('play-episode', { detail: { url, title, date } }));
+}
+
+export default function EpisodeList() {
   const [runs, setRuns] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -55,12 +60,13 @@ export default function EpisodeList({ handlePlay }: { handlePlay: (url: string, 
           
           <div className="ep-actions mt-8">
             <Button 
-              onClick={() => handlePlay(r.audio_url, r.id, r.created)}
+              onClick={() => playEpisode(r.audio_url, r.id, r.created)}
               variant="default"
               size="sm"
               className="rounded-full px-6 font-bold h-10 shadow-lg shadow-emerald-500/20 transition-all hover:scale-105 active:scale-95"
+              disabled={!r.audio_url}
             >
-              <Play size={16} className="fill-current mr-2" /> 播放
+              <Play size={16} className="fill-current mr-2" /> {r.audio_url ? '播放' : '无音频'}
             </Button>
             
             <Separator orientation="vertical" className="mx-2 h-4 hidden md:block" />

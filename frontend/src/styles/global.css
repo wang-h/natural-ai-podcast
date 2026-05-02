@@ -184,3 +184,11 @@ body {
 .section-label { @apply flex items-center gap-2.5 font-mono text-[0.75rem] font-bold uppercase text-muted-foreground mb-5 tracking-widest; }
 
 .nav-item { @apply flex items-center gap-3 px-3 py-2.5 -mx-3 text-foreground no-underline text-[0.95rem] font-semibold rounded-xl transition-all hover:bg-muted hover:translate-x-1; }
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  @apply flex gap-6 text-[0.7rem] font-bold tracking-[0.2em] text-muted-foreground uppercase;
+}
+
+.vertical-text b { @apply text-foreground font-black; }
