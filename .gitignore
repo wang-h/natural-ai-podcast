@@ -15,7 +15,7 @@ build/
 venv/
 
 # Run outputs (generated audio & scripts)
-runs/
+# runs/
 
 # IDE
 .idea/
