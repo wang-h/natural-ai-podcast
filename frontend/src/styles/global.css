@@ -89,15 +89,15 @@ body { @apply antialiased text-foreground bg-background; font-family: var(--font
     radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.04) 0px, transparent 50%);
 }
 
-.list-header { @apply p-10 md:p-20 lg:px-24 lg:pt-32 lg:pb-20 border-b relative overflow-hidden; }
-.list-header h2 { @apply text-5xl md:text-7xl font-[1000] tracking-[calc(var(--spacing)*-0.05)] text-foreground leading-none relative z-10; }
+.list-header { @apply p-10 md:p-16 lg:px-24 lg:pt-24 lg:pb-12 border-b relative overflow-hidden; }
+.list-header h2 { @apply text-3xl md:text-4xl font-[1000] tracking-tight text-foreground leading-none relative z-10; }
 .list-header::before {
-  content: "LATEST"; @apply absolute top-10 left-10 text-9xl font-black opacity-[0.03] select-none pointer-events-none;
+  content: "LATEST"; @apply absolute top-8 left-10 text-6xl font-black opacity-[0.02] select-none pointer-events-none tracking-widest;
 }
 
-.episode-list { @apply px-10 md:px-20 lg:px-24 relative z-10; }
-.episode-item { @apply py-20 md:py-28 border-b border-border/60 transition-all duration-500; }
-.ep-title { @apply text-3xl md:text-4xl font-[950] tracking-tight leading-[1.1] mb-6; }
+.episode-list { @apply px-10 md:px-16 lg:px-24 relative z-10; }
+.episode-item { @apply py-12 md:py-16 border-b border-border/60 transition-all duration-500; }
+.ep-title { @apply text-xl md:text-2xl font-[950] tracking-tight leading-tight mb-4; }
 
 .global-player { @apply fixed bottom-0 left-0 right-0 h-20 bg-[var(--player-bg)] border-t flex items-center px-8 z-[200] translate-y-full transition-all duration-500 ease-out; backdrop-filter: blur(20px); }
 .global-player.active { @apply translate-y-0; }
