@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Play, Database, MessageSquare } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
-export default function EpisodeList({ onPlay }: { onPlay: (url: string, title: string, date: string) => void }) {
+export default function EpisodeList() {
   const [runs, setRuns] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -59,8 +59,12 @@ export default function EpisodeList({ onPlay }: { onPlay: (url: string, title: s
           
           <div className="ep-actions flex items-center gap-4 text-[0.85rem] font-bold">
             <button 
-              onClick={() => onPlay(r.audio_url, r.id, r.created)}
+              onClick={() => {
+                if (!r.audio_url) return;
+                window.dispatchEvent(new CustomEvent('play-episode', { detail: { url: r.audio_url, title: r.id, date: r.created } }));
+              }}
               className="flex items-center gap-2 text-foreground hover:text-[var(--theme-blue)] transition-colors cursor-pointer"
+              disabled={!r.audio_url}
             >
               <Play size={14} className="fill-current" />
               <span>播放</span>
