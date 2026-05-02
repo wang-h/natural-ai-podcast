@@ -212,23 +212,23 @@ body {
 }
 
 .brand-main {
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: 900;
   letter-spacing: -0.02em;
   color: white;
   margin: 0;
   line-height: 1.1;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
 .brand-sub {
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.5em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.9);
-  margin-top: 0.2rem;
-  margin-left: 0.5em; /* Optical centering for spaced text */
+  color: rgba(255, 255, 255, 0.95);
+  margin-top: 0.4rem;
+  margin-left: 0.5em;
 }
 
 /* Glossy Surface Shine */
