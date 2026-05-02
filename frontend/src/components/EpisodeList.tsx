@@ -79,28 +79,6 @@ export default function EpisodeList() {
           <div className="ep-summary text-foreground/70 text-base leading-relaxed max-w-2xl mb-8 font-medium">
             {r.preview}
           </div>
-
-          {/* IN-ARTICLE SCRIPT FLOW (THE SOUL) */}
-          <div className="ep-script-preview space-y-4 mb-10 border-l-2 border-primary/5 pl-6 py-1">
-            {r.lines && r.lines.map((line: any, i: number) => (
-              <div key={i} className="flex flex-col gap-1">
-                <span className={cn(
-                  "text-[0.55rem] font-black uppercase tracking-[0.2em] opacity-30",
-                  line.speaker === '林深' ? "text-blue-600" : "text-purple-600"
-                )}>
-                  {line.speaker}
-                </span>
-                <p className="text-sm md:text-base leading-relaxed text-foreground/80 font-medium italic">
-                  “{line.text}”
-                </p>
-              </div>
-            ))}
-            <div className="pt-4">
-              <a href={`/run/?id=${r.id}`} className="text-[0.7rem] font-black uppercase tracking-widest text-[var(--theme-blue)] hover:underline underline-offset-4">
-                阅读完整脚本 →
-              </a>
-            </div>
-          </div>
           
           <div className="ep-actions flex items-center gap-6">
             <button 

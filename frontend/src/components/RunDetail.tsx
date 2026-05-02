@@ -90,8 +90,11 @@ export default function RunDetail() {
       )}
 
       <section className="space-y-10">
-        <div className="flex items-center gap-2 opacity-60">
-           <ScrollText size={18} /><h2 className="text-xl font-[900]">对谈脚本</h2>
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2 opacity-60">
+            <ScrollText size={18} /><h2 className="text-xl font-[900]">对谈脚本</h2>
+          </div>
+          <CopyScriptButton text={data.script_text} />
         </div>
 
         <div className="space-y-0">
@@ -117,5 +120,28 @@ export default function RunDetail() {
         </div>
       </section>
     </div>
+  );
+}
+
+function CopyScriptButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = useCallback(() => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }, [text]);
+
+  return (
+    <Button
+      variant="ghost"
+      size="sm"
+      onClick={handleCopy}
+      className="text-muted-foreground hover:text-foreground gap-1.5 shrink-0"
+    >
+      {copied ? <Check size={14} /> : <Copy size={14} />}
+      <span className="text-xs font-bold">{copied ? '已复制' : '复制脚本'}</span>
+    </Button>
   );
 }
