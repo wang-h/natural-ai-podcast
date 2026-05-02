@@ -5,7 +5,7 @@ import EpisodeList from '../components/EpisodeList';
 
 <Layout title="natural-ai-podcast">
   <div class="list-header"><h2>最近更新</h2></div>
-  <EpisodeList client:load onPlay={(url, title, date) => {
+  <EpisodeList client:load handlePlay={(url, title, date) => {
     window.dispatchEvent(new CustomEvent('play-episode', { detail: { url, title, date } }));
   }} />
 </Layout>

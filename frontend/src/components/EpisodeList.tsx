@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Play, Database } from 'lucide-react';
 
-export default function EpisodeList({ onPlay }: { onPlay: (url: string, title: string, date: string) => void }) {
+export default function EpisodeList({ handlePlay }: { handlePlay: (url: string, title: string, date: string) => void }) {
   const [runs, setRuns] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -44,7 +44,7 @@ export default function EpisodeList({ onPlay }: { onPlay: (url: string, title: s
           <div className="ep-actions">
             <div 
               className="play-btn-wrapper" 
-              onClick={() => onPlay(r.audio_url, r.id, r.created)}
+              onClick={() => handlePlay(r.audio_url, r.id, r.created)}
             >
               <Play className="lucide-play" />
               <span>播放</span>
