@@ -60,10 +60,12 @@ const { title } = Astro.props;
       <section class="info-sidebar">
         <div class="podcast-cover-box">
           <div class="podcast-cover-content">
-            <Mic className="text-white w-16 h-16 drop-shadow-2xl" />
-            <div class="brand-text mt-4">
-              <span class="brand-main">Natural AI</span>
-              <span class="brand-sub">Podcast</span>
+            <div class="podcast-cover-haze">
+              <Mic className="text-white w-14 h-14 drop-shadow-2xl" strokeWidth={1.5} />
+              <div class="brand-text">
+                <span class="brand-main">Natural AI</span>
+                <span class="brand-sub">Podcast</span>
+              </div>
             </div>
           </div>
         </div>
@@ -138,7 +140,7 @@ const { title } = Astro.props;
         <slot />
         <footer class="py-20 text-center border-t">
           <p class="text-xs font-bold text-muted-foreground uppercase tracking-widest">
-            natural-ai-podcast · Powered by MiniMax TTS
+            natural-ai-podcast
           </p>
         </footer>
       </main>

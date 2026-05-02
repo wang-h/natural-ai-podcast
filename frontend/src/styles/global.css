@@ -34,36 +34,11 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-
-  --color-sidebar: var(--sidebar-background);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+  --color-radius: var(--radius);
 }
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these characters.
-*/
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
+  *, ::after, ::before, ::backdrop, ::file-selector-button {
     border-color: var(--border, currentColor);
   }
 }
@@ -75,16 +50,15 @@
   --muted-foreground: #71717a;
   --border: #e4e4e7;
   
-  --theme-blue: #0ea5e9;
+  --theme-blue: #3b82f6;
   --theme-green: #10b981;
-  --theme-gradient: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
+  --theme-gradient: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
   
   --sidebar-bg: #ffffff;
   --card-bg: #fafafa;
   --player-bg: rgba(255, 255, 255, 0.95);
   --input-bg: #ffffff;
 
-  /* shadcn generic */
   --primary: #09090b;
   --primary-foreground: #fafafa;
   --secondary: #f4f4f5;
@@ -95,7 +69,7 @@
   --destructive-foreground: #fafafa;
   --input: #e4e4e7;
   --ring: #09090b;
-  --radius: 0.5rem;
+  --radius: 0.75rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -105,20 +79,14 @@
     --muted: #18181b;
     --muted-foreground: #a1a1aa;
     --border: #27272a;
-    
     --sidebar-bg: #09090b;
     --card-bg: #111113;
     --player-bg: rgba(9, 9, 11, 0.95);
     --input-bg: #18181b;
-
-    /* shadcn generic dark */
     --primary: #fafafa;
     --primary-foreground: #09090b;
     --secondary: #18181b;
     --secondary-foreground: #fafafa;
-    --accent: #18181b;
-    --accent-foreground: #fafafa;
-    --ring: #d4d4d8;
   }
 }
 
@@ -139,70 +107,80 @@
 body {
   @apply antialiased text-foreground bg-background;
   font-family: var(--font-sans);
-  line-height: 1.6;
-  padding-bottom: 80px;
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Original Project Components Refined with Tailwind */
+/* --- Premium Components --- */
 
-.app-container {
-  @apply flex flex-col min-h-screen;
-}
-
+.app-container { @apply flex flex-col min-h-screen; }
 @media (min-width: 768px) {
-  .app-container {
-    @apply flex-row fixed inset-0 overflow-hidden;
-    bottom: 80px;
-  }
+  .app-container { @apply flex-row fixed inset-0 overflow-hidden; bottom: 80px; }
 }
 
-.slim-sidebar {
-  @apply hidden md:flex w-16 flex-shrink-0 border-r flex-col items-center justify-between py-10 bg-[var(--sidebar-bg)];
-}
+.slim-sidebar { @apply hidden md:flex w-16 flex-shrink-0 border-r flex-col items-center justify-between py-10 bg-[var(--sidebar-bg)]; }
+.info-sidebar { @apply w-full md:w-80 lg:w-96 border-b md:border-b-0 md:border-r bg-[var(--sidebar-bg)] p-10 md:p-12 lg:p-16 flex flex-col gap-10 overflow-y-auto; }
 
-.info-sidebar {
-  @apply w-full md:w-80 lg:w-96 border-b md:border-b-0 md:border-r bg-[var(--sidebar-bg)] p-10 md:p-12 lg:p-16 flex flex-col gap-10 overflow-y-auto;
-}
-
+/* REIMAGINED COVER: Hazy Glass on Vibrant Fluid */
 .podcast-cover-box {
-  @apply aspect-square w-full rounded-[2.25rem] overflow-hidden relative flex items-center justify-center bg-[#0ea5e9] shadow-lg border border-white/40 flex-shrink-0;
-  box-shadow: 0 20px 50px -12px rgba(14, 165, 233, 0.4), inset 0 0 40px rgba(255, 255, 255, 0.3);
+  @apply aspect-square w-full rounded-[2.5rem] overflow-hidden relative flex items-center justify-center bg-[#0ea5e9] flex-shrink-0 border border-white/20;
+  box-shadow: 0 30px 60px -12px rgba(14, 165, 233, 0.35);
 }
 
 .podcast-cover-box::before {
   content: "";
-  @apply absolute -inset-[50%] opacity-100;
+  @apply absolute -inset-[50%];
   background: 
     radial-gradient(circle at 30% 30%, #2dd4bf 0%, transparent 50%),
     radial-gradient(circle at 70% 20%, #38bdf8 0%, transparent 45%),
     radial-gradient(circle at 40% 80%, #10b981 0%, transparent 50%),
     radial-gradient(circle at 80% 70%, #6366f1 0%, transparent 45%);
-  filter: blur(35px);
-  animation: vibrant-flow 10s infinite alternate ease-in-out;
+  filter: blur(40px);
+  animation: vibrant-flow 12s infinite alternate ease-in-out;
 }
 
 @keyframes vibrant-flow {
   0% { transform: rotate(0deg) scale(1); }
-  100% { transform: rotate(20deg) scale(1.15); }
+  100% { transform: rotate(15deg) scale(1.1); }
 }
 
-.brand-main { @apply text-[1.8rem] font-[900] tracking-tight text-white; text-shadow: 0 4px 15px rgba(0,0,0,0.15); }
-.brand-sub { @apply text-[0.75rem] font-[800] tracking-[0.5em] uppercase text-white/95 mt-1 ml-[0.5em]; }
+.podcast-cover-haze {
+  @apply relative z-10 w-[85%] h-[85%] rounded-[2rem] flex flex-col items-center justify-center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(25px) saturate(150%);
+  -webkit-backdrop-filter: blur(25px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.brand-main { @apply text-[1.6rem] font-[950] tracking-tight text-white leading-tight; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+.brand-sub { @apply text-[0.6rem] font-black tracking-[0.5em] uppercase text-white/80 mt-1 ml-[0.5em]; }
+
+/* ADVANCED BUTTONS: High-end Micro-gradients */
+.btn-gradient {
+  @apply relative overflow-hidden transition-all duration-300 active:scale-95;
+  background: linear-gradient(135deg, #10b981, #3b82f6);
+  background-size: 200% 200%;
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.3);
+}
+.btn-gradient:hover {
+  background-position: 100% 100%;
+  box-shadow: 0 15px 35px -5px rgba(16, 185, 129, 0.4);
+  @apply -translate-y-0.5;
+}
 
 .main-content { @apply flex-1 overflow-y-auto bg-background; }
 .list-header { @apply p-10 lg:px-20 lg:py-16 border-b; }
-.episode-item { @apply flex flex-col gap-3 p-10 lg:px-20 lg:py-14 border-b transition-colors hover:bg-[var(--card-bg)]; }
-.ep-title { @apply text-3xl font-[800] tracking-tight; }
-.ep-title a:hover { @apply bg-[var(--theme-gradient)] bg-clip-text text-transparent; }
+.episode-item { @apply flex flex-col gap-3 p-10 lg:px-20 lg:py-14 border-b transition-all hover:bg-[var(--card-bg)]; }
+.ep-title { @apply text-3xl font-[900] tracking-tight; }
 
 .global-player {
-  @apply fixed bottom-0 left-0 right-0 h-20 bg-[var(--player-bg)] border-t flex items-center px-8 z-[200] translate-y-full transition-transform duration-300;
-  backdrop-filter: blur(10px);
+  @apply fixed bottom-0 left-0 right-0 h-20 bg-[var(--player-bg)] border-t flex items-center px-8 z-[200] translate-y-full transition-all duration-500 ease-out;
+  backdrop-filter: blur(20px);
 }
 .global-player.active { @apply translate-y-0; }
 
 .square-icon { @apply w-2.5 h-2.5 rounded-[2px] bg-[var(--theme-gradient)]; }
-.section-label { @apply flex items-center gap-2.5 font-mono text-[0.75rem] font-semibold uppercase text-muted-foreground mb-5; }
+.section-label { @apply flex items-center gap-2.5 font-mono text-[0.75rem] font-bold uppercase text-muted-foreground mb-5 tracking-widest; }
 
-.nav-item { @apply flex items-center gap-3 px-3 py-2.5 -mx-3 text-foreground no-underline text-[0.95rem] font-medium rounded-lg transition-colors hover:bg-muted; }
+.nav-item { @apply flex items-center gap-3 px-3 py-2.5 -mx-3 text-foreground no-underline text-[0.95rem] font-semibold rounded-xl transition-all hover:bg-muted hover:translate-x-1; }
