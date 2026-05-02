@@ -93,6 +93,10 @@ const { title } = Astro.props;
               <span>功能</span>
             </div>
             <nav class="flex flex-col gap-1">
+              <a href="/" class="nav-item group">
+                <LayoutGrid size={18} className="text-indigo-500 group-hover:scale-110 transition-transform" />
+                <span>返回首页</span>
+              </a>
               <a href="/script/" class="nav-item group">
                 <FileText size={18} className="text-sky-500 group-hover:scale-110 transition-transform" />
                 <span>Text → Script</span>
@@ -100,10 +104,6 @@ const { title } = Astro.props;
               <a href="/render/" class="nav-item group">
                 <Headphones size={18} className="text-emerald-500 group-hover:scale-110 transition-transform" />
                 <span>Script → Audio</span>
-              </a>
-              <a href="/" class="nav-item group">
-                <LayoutGrid size={18} className="text-indigo-500 group-hover:scale-110 transition-transform" />
-                <span>返回首页</span>
               </a>
             </nav>
           </section>
