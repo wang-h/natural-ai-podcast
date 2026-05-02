@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Play, Database, MessageSquare, Mic2, Hash } from 'lucide-react';
+import { Play, Database, MessageSquare } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
-export default function EpisodeList({ onPlay }: { onPlay: (url: string, title: string, date: string) => void }) {
+export default function EpisodeList() {
   const [runs, setRuns] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -19,6 +19,17 @@ export default function EpisodeList({ onPlay }: { onPlay: (url: string, title: s
       });
   }, []);
 
+  const triggerPlay = (url: string, title: string, date: string) => {
+    if (!url) {
+      alert('该节目暂无音频源');
+      return;
+    }
+    console.log('Dispatching play-episode:', title);
+    window.dispatchEvent(new CustomEvent('play-episode', { 
+      detail: { url, title, date } 
+    }));
+  };
+
   if (loading) {
     return <div className="flex flex-col items-center justify-center py-40 gap-4">
       <div className="w-6 h-6 border-2 border-primary/20 border-t-primary rounded-full animate-spin" />
@@ -34,7 +45,6 @@ export default function EpisodeList({ onPlay }: { onPlay: (url: string, title: s
     );
   }
 
-  // Helper to simulate "topics" since they might not be in API yet
   const getTopics = (id: string) => {
     if (id.includes('goblin')) return ["AI 文体测定", "身份还原", "OpenAI 封禁"];
     if (id.includes('cursor')) return ["9秒删库事故", "Cursor 安全性", "责任认定"];
@@ -44,12 +54,10 @@ export default function EpisodeList({ onPlay }: { onPlay: (url: string, title: s
 
   return (
     <div className="episode-list relative">
-      {/* Decorative vertical line */}
       <div className="absolute left-0 top-0 bottom-0 w-px bg-border/40 hidden md:block" />
 
       {runs.map((r: any, idx: number) => (
         <article className="episode-item relative pl-0 md:pl-16 py-16 md:py-24 border-b border-border/40 last:border-0 group transition-all" key={r.id}>
-          {/* Index Number */}
           <div className="absolute left-0 top-[4.5rem] hidden md:flex flex-col items-center">
             <span className="text-[0.7rem] font-mono font-black text-muted-foreground/30 group-hover:text-[var(--theme-blue)] transition-colors">
               {(runs.length - idx).toString().padStart(2, '0')}
@@ -76,7 +84,6 @@ export default function EpisodeList({ onPlay }: { onPlay: (url: string, title: s
             {r.preview}
           </div>
 
-          {/* New Topics Section (Hacker Podcast Style) */}
           <div className="ep-topics mb-10">
             <ul className="flex flex-wrap gap-x-6 gap-y-2">
               {getTopics(r.id).map(topic => (
@@ -90,8 +97,8 @@ export default function EpisodeList({ onPlay }: { onPlay: (url: string, title: s
           
           <div className="ep-actions flex items-center gap-6 text-[0.85rem] font-black uppercase tracking-widest">
             <button 
-              onClick={() => onPlay(r.audio_url, r.id, r.created)}
-              className="flex items-center gap-2 text-foreground hover:text-[var(--theme-blue)] transition-all cursor-pointer hover:scale-105 active:scale-95"
+              onClick={() => triggerPlay(r.audio_url, r.id, r.created)}
+              className="flex items-center gap-2 text-foreground hover:text-[var(--theme-blue)] transition-all cursor-pointer hover:scale-105 active:scale-95 bg-transparent border-none p-0"
             >
               <Play size={16} className="fill-current text-[var(--theme-blue)]" />
               <span>播放</span>

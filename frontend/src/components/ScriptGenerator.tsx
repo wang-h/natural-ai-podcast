@@ -71,8 +71,8 @@ export default function ScriptGenerator() {
           />
         </div>
 
-        <div className="flex flex-col md:flex-row gap-6 md:items-end bg-muted/30 p-6 rounded-[2rem] border">
-          <div className="flex-1 space-y-3">
+        <div className="flex flex-col md:flex-row gap-4 md:items-end bg-muted/30 p-6 rounded-[2rem] border">
+          <div className="md:w-72 lg:w-80 space-y-3">
             <Label htmlFor="model" className="text-xs font-black uppercase tracking-widest opacity-40">LLM Model</Label>
             <Select value={model} onValueChange={setModel}>
               <SelectTrigger className="w-full h-12 bg-background rounded-xl text-sm font-bold border-2">
@@ -91,7 +91,7 @@ export default function ScriptGenerator() {
             disabled={loading} 
             type="submit" 
             variant="gradient" 
-            className="h-12 px-8 text-base font-black rounded-xl w-full md:w-auto shadow-xl"
+            className="h-12 px-8 text-base font-black rounded-xl w-full md:w-auto shadow-xl shrink-0"
           >
             {loading ? <Sparkles className="animate-spin mr-2" /> : <Wand2 className="mr-2" />}
             {loading ? '生成中...' : '生成脚本'}
