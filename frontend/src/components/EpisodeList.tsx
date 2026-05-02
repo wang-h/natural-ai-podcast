@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 
-export default function EpisodeList({ onPlay }: { onPlay: (url: string, title: string, date: string) => void }) {
+export default function EpisodeList({ handlePlay }: { handlePlay: (url: string, title: string, date: string) => void }) {
   const [runs, setRuns] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -55,7 +55,7 @@ export default function EpisodeList({ onPlay }: { onPlay: (url: string, title: s
           
           <div className="ep-actions mt-8">
             <Button 
-              onClick={() => onPlay(r.audio_url, r.id, r.created)}
+              onClick={() => handlePlay(r.audio_url, r.id, r.created)}
               variant="default"
               size="sm"
               className="rounded-full px-6 font-bold h-10 shadow-lg shadow-emerald-500/20 transition-all hover:scale-105 active:scale-95"
