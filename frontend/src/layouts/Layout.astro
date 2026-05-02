@@ -65,7 +65,11 @@ const { title } = Astro.props;
         <div class="info-sections">
           <section>
             <div class="section-label"><div class="square-icon"></div> 关于</div>
-            <div class="description-box">一个基于 AI 的中文播客项目，由林深 & 若水对谈，通过 MiniMax TTS 提供真人质感的听觉体验。</div>
+            <div class="description-box" style="font-size: 0.95rem; line-height: 1.8; opacity: 0.9;">
+              <b>林深 & 若水</b> 的深夜对谈。<br/>
+              在这里，AI 不再是冰冷的算法，而是带有<b>呼吸、犹豫和情感</b>的灵魂。<br/>
+              我们追求极致的<b>自然感</b>，复刻最真实的临场气场，让每一次收听都宛如挚友对坐，为你带来有温度的科技解读。
+            </div>
           </section>
 
           <section style="margin-top: 2.5rem;">
@@ -93,37 +97,10 @@ const { title } = Astro.props;
       </main>
     </div>
 
-    <!-- Persistent React Player -->
-    <div id="player-root" transition:persist></div>
+    <!-- Persistent React Player as an Island -->
+    <GlobalPlayer client:idle />
     
     <script>
-      import { createRoot } from 'react-dom/client';
-      import GlobalPlayer from '../components/GlobalPlayer';
-      import React from 'react';
-
-      let currentEpisode: any = null;
-      let root: any = null;
-
-      function renderPlayer() {
-        const container = document.getElementById('player-root');
-        if (!container) return;
-        if (!root) {
-          root = createRoot(container);
-        }
-        root.render(
-          React.createElement(GlobalPlayer, {
-            currentEpisode: currentEpisode,
-            onClose: () => { currentEpisode = null; renderPlayer(); }
-          })
-        );
-      }
-
-      // Listen for play requests from any page
-      window.addEventListener('play-episode', (e: any) => {
-        currentEpisode = e.detail;
-        renderPlayer();
-      });
-
       function init() {
         if (window.lucide) window.lucide.createIcons();
         
@@ -139,9 +116,6 @@ const { title } = Astro.props;
         if (themeToggle) {
           themeToggle.addEventListener('click', handleToggleClick);
         }
-        
-        // Re-render player on navigation if it exists
-        if (currentEpisode) renderPlayer();
       }
 
       document.addEventListener('astro:page-load', init);
