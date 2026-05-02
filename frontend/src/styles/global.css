@@ -98,5 +98,11 @@ body { @apply antialiased text-foreground bg-background; font-family: var(--font
 .vertical-text { writing-mode: vertical-rl; text-orientation: mixed; @apply flex gap-6 text-[0.7rem] font-bold tracking-[0.2em] text-muted-foreground uppercase; }
 .vertical-text b { @apply text-foreground font-black text-[0.85rem]; }
 
-.btn-gradient { @apply relative overflow-hidden transition-all active:scale-95 bg-foreground text-background font-bold uppercase tracking-widest text-[0.75rem] py-3 px-6 rounded-none; }
-.btn-gradient:hover { @apply opacity-90; }
+.btn-gradient { 
+  @apply relative overflow-hidden transition-all active:scale-95 text-white font-bold uppercase tracking-widest text-[0.75rem] py-3 px-8 rounded-full border-none shadow-lg shadow-emerald-500/20;
+  background: var(--theme-gradient);
+}
+.btn-gradient:hover { 
+  @apply -translate-y-0.5 shadow-xl shadow-emerald-500/30;
+  filter: brightness(1.05);
+}
