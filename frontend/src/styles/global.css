@@ -170,9 +170,15 @@ body {
 }
 
 .main-content { @apply flex-1 overflow-y-auto bg-background; }
-.list-header { @apply p-10 lg:px-20 lg:py-16 border-b; }
-.episode-item { @apply flex flex-col gap-3 p-10 lg:px-20 lg:py-14 border-b transition-all hover:bg-[var(--card-bg)]; }
-.ep-title { @apply text-3xl font-[900] tracking-tight; }
+.list-header { @apply p-10 md:p-16 lg:px-24 lg:py-20 border-b; }
+.list-header h2 { @apply text-[0.7rem] font-black uppercase tracking-[0.2em] text-muted-foreground opacity-60; }
+
+.episode-list { @apply px-10 md:px-16 lg:px-24; }
+.episode-item { @apply py-16 md:py-24 border-b transition-opacity duration-300; }
+.episode-item:hover { @apply opacity-100; }
+.episode-item:not(:hover) { @apply opacity-90; }
+
+.ep-title { @apply text-3xl md:text-4xl font-[950] tracking-tight leading-[1.1]; }
 
 .global-player {
   @apply fixed bottom-0 left-0 right-0 h-20 bg-[var(--player-bg)] border-t flex items-center px-8 z-[200] translate-y-full transition-all duration-500 ease-out;

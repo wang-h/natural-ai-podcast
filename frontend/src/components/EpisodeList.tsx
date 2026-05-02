@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Play, Database, MessageSquare } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
 
-function playEpisode(url: string, title: string, date: string) {
-  if (!url) return;
-  window.dispatchEvent(new CustomEvent('play-episode', { detail: { url, title, date } }));
-}
-
-export default function EpisodeList() {
+export default function EpisodeList({ onPlay }: { onPlay: (url: string, title: string, date: string) => void }) {
   const [runs, setRuns] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -28,60 +21,63 @@ export default function EpisodeList() {
 
   if (loading) {
     return <div className="flex flex-col items-center justify-center py-40 gap-4">
-      <div className="w-8 h-8 border-4 border-emerald-500/20 border-t-emerald-500 rounded-full animate-spin" />
-      <span className="text-sm font-medium text-muted-foreground animate-pulse">正在寻找深夜对谈...</span>
+      <div className="w-6 h-6 border-2 border-primary/20 border-t-primary rounded-full animate-spin" />
     </div>;
   }
 
   if (runs.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-40 text-center text-muted-foreground">
-        <Database size={48} className="mb-6 opacity-10" />
-        <p className="text-lg font-medium">暂无播客内容</p>
-        <p className="text-sm opacity-60 mt-2">快去左侧生成第一场对谈吧</p>
+        <Database size={40} className="mb-4 opacity-10" />
+        <p className="text-sm font-medium">暂无播客内容</p>
       </div>
     );
   }
 
   return (
-    <div className="episode-list divide-y divide-border">
+    <div className="episode-list">
       {runs.map((r: any) => (
-        <article className="episode-item group" key={r.id}>
-          <time className="ep-date mb-3 block">{r.created}</time>
-          <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
-            <div className="flex-1 space-y-4">
-              <h3 className="ep-title group-hover:text-emerald-600 transition-colors">
-                <a href={`/run/?id=${r.id}`}>{r.id}</a>
-                {r.has_deepling && <Badge variant="gradient" className="ml-4 align-middle">DEEPLING</Badge>}
-              </h3>
-              <p className="ep-summary text-muted-foreground leading-relaxed max-w-2xl">{r.preview}</p>
-            </div>
+        <article className="episode-item py-12 md:py-16 border-b border-border last:border-0" key={r.id}>
+          <time className="ep-date font-mono text-[0.7rem] uppercase tracking-widest text-muted-foreground mb-4 block">
+            {r.created}
+          </time>
+          
+          <h3 className="ep-title text-2xl md:text-3xl font-[900] tracking-tight mb-4">
+            <a href={`/run/?id=${r.id}`} className="hover:text-[var(--theme-blue)] transition-colors">
+              {r.id}
+            </a>
+            {r.has_deepling && (
+              <Badge variant="gradient" className="ml-4 align-middle text-[0.6rem] py-0 px-2 rounded-sm">
+                DEEPLING
+              </Badge>
+            )}
+          </h3>
+
+          <div className="ep-summary text-foreground/70 text-[0.95rem] leading-relaxed max-w-2xl mb-8">
+            {r.preview}
           </div>
           
-          <div className="ep-actions mt-8">
-            <Button 
-              onClick={() => playEpisode(r.audio_url, r.id, r.created)}
-              variant="default"
-              size="sm"
-              className="rounded-full px-6 font-bold h-10 shadow-lg shadow-emerald-500/20 transition-all hover:scale-105 active:scale-95"
-              disabled={!r.audio_url}
+          <div className="ep-actions flex items-center gap-4 text-[0.85rem] font-bold">
+            <button 
+              onClick={() => onPlay(r.audio_url, r.id, r.created)}
+              className="flex items-center gap-2 text-foreground hover:text-[var(--theme-blue)] transition-colors cursor-pointer"
             >
-              <Play size={16} className="fill-current mr-2" /> {r.audio_url ? '播放' : '无音频'}
-            </Button>
+              <Play size={14} className="fill-current" />
+              <span>播放</span>
+            </button>
             
-            <Separator orientation="vertical" className="mx-2 h-4 hidden md:block" />
-            <span className="text-muted-foreground mx-1 hidden md:inline">/</span>
+            <span className="text-muted-foreground/40 font-normal">/</span>
             
-            <Button asChild variant="ghost" size="sm" className="font-semibold text-muted-foreground hover:text-foreground">
-              <a href={`/run/?id=${r.id}`}>查看详情</a>
-            </Button>
+            <a href={`/run/?id=${r.id}`} className="text-foreground/80 hover:text-foreground hover:underline underline-offset-4">
+              查看详情
+            </a>
 
-            <div className="ml-auto flex items-center gap-6 text-[0.8rem] font-medium text-muted-foreground/60">
-              <div className="flex items-center gap-1.5">
-                <MessageSquare size={14} />
-                <span>{r.line_count} turns</span>
-              </div>
-            </div>
+            <span className="text-muted-foreground/40 font-normal">/</span>
+            
+            <span className="text-muted-foreground font-medium flex items-center gap-1.5">
+              <MessageSquare size={14} />
+              {r.line_count} turns
+            </span>
           </div>
         </article>
       ))}
