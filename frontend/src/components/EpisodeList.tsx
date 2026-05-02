@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Database } from 'lucide-react';
+import { Database, MessageSquare } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { toast } from 'sonner';
+import { Badge } from '@/components/ui/badge';
 
 export default function EpisodeList() {
   const [runs, setRuns] = useState([]);
@@ -22,7 +24,7 @@ export default function EpisodeList() {
       });
   }, []);
 
-  const togglePlay = (url: string) => {
+  const togglePlay = (url: string, title: string) => {
     if (activeAudio === url) {
       if (isPlaying) {
         audioRef.current?.pause();
@@ -30,10 +32,12 @@ export default function EpisodeList() {
       } else {
         audioRef.current?.play();
         setIsPlaying(true);
+        toast(`正在播放: ${title}`, { icon: '🎧' });
       }
     } else {
       setActiveAudio(url);
       setIsPlaying(true);
+      toast(`正在播放: ${title}`, { icon: '🎧' });
       if (audioRef.current) {
         audioRef.current.src = url;
         audioRef.current.play();
@@ -67,9 +71,9 @@ export default function EpisodeList() {
           
           <div className="ep-actions flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.2em]">
             <button 
-              onClick={() => togglePlay(r.audio_url)}
+              onClick={() => togglePlay(r.audio_url, r.id)}
               className={cn(
-                "hover:text-[var(--theme-blue)] transition-colors cursor-pointer",
+                "hover:text-[var(--theme-blue)] transition-colors cursor-pointer border-none bg-transparent p-0",
                 activeAudio === r.audio_url && isPlaying ? "text-[var(--theme-blue)]" : "text-foreground"
               )}
             >

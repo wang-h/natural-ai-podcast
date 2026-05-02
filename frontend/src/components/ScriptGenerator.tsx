@@ -3,6 +3,7 @@ import { Copy, Sparkles, Wand2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { toast } from 'sonner';
 import {
   Select,
   SelectContent,
@@ -24,19 +25,25 @@ export default function ScriptGenerator() {
     setError(null);
     setResult(null);
 
-    try {
-      const res = await fetch('/api/script', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ source, model })
-      });
+    const promise = fetch('/api/script', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ source, model })
+    }).then(async res => {
       const data = await res.json();
-      
-      if (!data.success) {
-        setError(data.error + '\n' + (data.log || ''));
-      } else {
-        setResult(data);
-      }
+      if (!data.success) throw new Error(data.error || '生成失败');
+      setResult(data);
+      return data;
+    });
+
+    toast.promise(promise, {
+      loading: '正在通过 4 阶段管线优化脚本...',
+      success: '脚本生成成功！',
+      error: (err) => `错误: ${err.message}`
+    });
+
+    try {
+      await promise;
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -47,7 +54,7 @@ export default function ScriptGenerator() {
   const copyScript = () => {
     if (result?.script) {
       navigator.clipboard.writeText(result.script);
-      alert('已复制到剪贴板');
+      toast.success('脚本已复制到剪贴板');
     }
   };
 
@@ -97,8 +104,14 @@ export default function ScriptGenerator() {
             {loading ? '生成中...' : '生成脚本'}
           </Button>
         </div>
-
       </form>
+
+      {error && (
+        <div className="mt-12 p-8 bg-destructive/5 border-2 border-destructive/20 rounded-[2rem] text-destructive font-mono text-sm overflow-auto">
+          <div className="font-black mb-2 uppercase tracking-widest">Error Log</div>
+          {error}
+        </div>
+      )}
 
       {result && (
         <div className="mt-20 animate-in fade-in slide-in-from-bottom-6 duration-700">

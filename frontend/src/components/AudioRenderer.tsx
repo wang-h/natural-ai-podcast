@@ -5,6 +5,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
+import { toast } from 'sonner';
 
 export default function AudioRenderer() {
   const [script, setScript] = useState('');
@@ -28,19 +29,25 @@ export default function AudioRenderer() {
     setError(null);
     setResult(null);
 
-    try {
-      const res = await fetch('/api/render', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ script, run_id: runId, soft, branding, force })
-      });
+    const promise = fetch('/api/render', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ script, run_id: runId, soft, branding, force })
+    }).then(async res => {
       const data = await res.json();
-      
-      if (!data.success) {
-        setError(data.error + '\n' + (data.log || ''));
-      } else {
-        setResult(data);
-      }
+      if (!data.success) throw new Error(data.error || '合成失败');
+      setResult(data);
+      return data;
+    });
+
+    toast.promise(promise, {
+      loading: '正在通过 MiniMax 引擎合成语音...',
+      success: '音频合成成功！',
+      error: (err) => `错误: ${err.message}`
+    });
+
+    try {
+      await promise;
     } catch (err: any) {
       setError(err.message);
     } finally {

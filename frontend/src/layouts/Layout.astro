@@ -2,6 +2,7 @@
 import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import GlobalPlayer from '../components/GlobalPlayer';
+import { Toaster } from 'sonner';
 import { Mic, FileText, Headphones, Music, Mic2, Rss, Globe, Moon, Sun, LayoutGrid } from 'lucide-react';
 
 interface Props {
@@ -149,6 +150,10 @@ const { title } = Astro.props;
       </main>
     </div>
 
+    <!-- Persistent React Player as an Island -->
+    <GlobalPlayer client:load />
+    <Toaster client:load richColors position="top-center" />
+    
     <script>
       function init() {
         const handleToggleClick = () => {
