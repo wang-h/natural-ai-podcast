@@ -81,7 +81,7 @@ export default function AudioRenderer() {
             onChange={e => setScript(e.target.value)}
             rows={14} 
             className="text-base p-5 rounded-2xl border-2 focus:ring-4 focus:ring-primary/5 transition-all bg-muted/20"
-            placeholder="林深：大家好...&#10;若水：我是若水..."
+            placeholder="请按以下格式输入对谈脚本：&#10;&#10;林深：大家好，我是林深。&#10;若水：我是若水，欢迎收听 Natural AI。&#10;林深：今天我们聊聊 AI 的情感表达...&#10;..."
           />
         </div>
 
