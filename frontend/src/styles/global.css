@@ -82,17 +82,22 @@ body { @apply antialiased text-foreground bg-background; font-family: var(--font
 .brand-sub { @apply text-[0.6rem] font-black tracking-[0.5em] uppercase text-white/80 mt-1 ml-[0.5em]; }
 
 .main-content { 
-  @apply flex-1 overflow-y-auto relative;
-  /* Ambient Mesh Background */
+  @apply flex-1 overflow-y-auto relative bg-background;
   background-image: 
-    radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.04) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.04) 0px, transparent 50%);
+    radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.03) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.03) 0px, transparent 50%);
 }
 
-.list-header { @apply p-10 md:p-16 lg:px-24 lg:pt-24 lg:pb-12 border-b relative overflow-hidden; }
-.list-header h2 { @apply text-3xl md:text-4xl font-[1000] tracking-tight text-foreground leading-none relative z-10; }
+.episode-list::before {
+  content: "";
+  @apply absolute left-0 top-0 bottom-0 w-px hidden md:block;
+  background: linear-gradient(to bottom, transparent, var(--border) 10%, var(--border) 90%, transparent);
+}
+
+.list-header { @apply p-10 md:p-20 lg:px-24 lg:pt-32 lg:pb-24 border-b relative overflow-hidden; }
+.list-header h2 { @apply text-6xl md:text-8xl font-[1000] tracking-tighter text-foreground leading-none relative z-10; }
 .list-header::before {
-  content: "LATEST"; @apply absolute top-8 left-10 text-6xl font-black opacity-[0.02] select-none pointer-events-none tracking-widest;
+  content: "UPDATES"; @apply absolute -top-4 -left-4 text-[12rem] font-black opacity-[0.02] select-none pointer-events-none;
 }
 
 .episode-list { @apply px-10 md:px-16 lg:px-24 relative z-10; }

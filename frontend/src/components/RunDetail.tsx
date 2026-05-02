@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Download, ScrollText, ChevronLeft, Mic2, Sparkles } from 'lucide-react';
+import { Download, ScrollText, ChevronLeft, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -67,13 +67,25 @@ export default function RunDetail() {
       </header>
 
       {data.audio_url && (
-        <section className="mb-16 p-8 bg-muted/20 rounded-[2rem] border border-border/60">
-           <div className="flex items-center gap-3 mb-6 opacity-40">
-              <Mic2 size={16} /><span className="font-black text-[0.6rem] uppercase tracking-widest">Player</span>
-           </div>
-           <audio controls className="w-full h-10">
-             <source src={data.audio_url} type="audio/mpeg" />
-           </audio>
+        <section className="mb-16">
+           <button
+             onClick={() => {
+               if (data.audio_url) {
+                 window.dispatchEvent(new CustomEvent('play-episode', { detail: { url: data.audio_url, title: data.id, date: '' } }));
+               }
+             }}
+             className="w-full group relative overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-r from-blue-500/5 via-emerald-500/5 to-blue-500/5 p-8 text-left transition-all hover:border-border hover:shadow-lg hover:shadow-emerald-500/5 active:scale-[0.99]"
+           >
+             <div className="flex items-center gap-6">
+               <div className="w-14 h-14 rounded-xl bg-[var(--theme-gradient)] flex items-center justify-center text-white shrink-0 shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition-transform">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg>
+               </div>
+               <div>
+                 <div className="text-sm font-black tracking-tight mb-1">点击播放</div>
+                 <div className="text-xs text-muted-foreground font-medium">使用底部播放器收听完整对谈</div>
+               </div>
+             </div>
+           </button>
         </section>
       )}
 
