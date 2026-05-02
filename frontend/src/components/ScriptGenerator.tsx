@@ -4,17 +4,9 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 export default function ScriptGenerator() {
   const [source, setSource] = useState('');
-  const [model, setModel] = useState('MiniMax-Text-01');
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
@@ -28,7 +20,7 @@ export default function ScriptGenerator() {
     const promise = fetch('/api/script', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ source, model })
+      body: JSON.stringify({ source, model: '' })
     }).then(async res => {
       const data = await res.json();
       if (!data.success) throw new Error(data.error || '生成失败');
@@ -37,7 +29,7 @@ export default function ScriptGenerator() {
     });
 
     toast.promise(promise, {
-      loading: '正在通过 4 阶段管线优化脚本...',
+      loading: '正在通过 MiniMax 4 阶段管线优化脚本...',
       success: '脚本生成成功！',
       error: (err) => `错误: ${err.message}`
     });
@@ -79,19 +71,9 @@ export default function ScriptGenerator() {
         </div>
 
         <div className="flex flex-col md:flex-row items-stretch md:items-center gap-4 bg-muted/30 p-4 rounded-2xl border">
-          <div className="flex-1 flex flex-col md:flex-row md:items-center gap-4">
-            <Label htmlFor="model" className="text-xs font-black uppercase tracking-widest opacity-40 shrink-0 md:w-24">LLM Model</Label>
-            <Select value={model} onValueChange={setModel}>
-              <SelectTrigger className="w-full h-11 bg-background rounded-xl text-sm font-bold border-2">
-                <SelectValue placeholder="选择模型" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="MiniMax-Text-01">MiniMax M2.7 (Default)</SelectItem>
-                <SelectItem value="kimi-latest">Kimi 2.6</SelectItem>
-                <SelectItem value="deepseek-chat">DeepSeek V4</SelectItem>
-                <SelectItem value="qwen-max">Qwen Max</SelectItem>
-              </SelectContent>
-            </Select>
+          <div className="flex-1 flex items-center gap-3 text-xs font-bold text-muted-foreground">
+            <Sparkles size={14} className="text-emerald-500" />
+            <span>Powered by MiniMax M2.7</span>
           </div>
 
           <Button 

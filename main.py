@@ -75,6 +75,10 @@ async def list_runs():
 
         script = final_md.read_text(encoding="utf-8")
         lines = parse_script(script)
+        
+        # Format lines for frontend
+        formatted_lines = [{"speaker": sp, "text": txt} for sp, txt in lines]
+        
         preview_line = ""
         for sp, txt in lines:
             if "大家好" not in txt and "欢迎收听" not in txt:
@@ -85,6 +89,7 @@ async def list_runs():
             "id": d.name,
             "created": datetime.fromtimestamp(d.stat().st_mtime, tz=timezone.utc).strftime("%Y-%m-%d %H:%M"),
             "preview": preview_line,
+            "lines": formatted_lines[:6],  # Only show first 6 lines on home page for better spacing
             "audio_url": audio_url,
             "has_deepling": deepling.exists(),
             "line_count": len(lines),

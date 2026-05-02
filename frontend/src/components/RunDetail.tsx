@@ -77,7 +77,7 @@ export default function RunDetail() {
              className="w-full group relative overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-r from-blue-500/5 via-emerald-500/5 to-blue-500/5 p-8 text-left transition-all hover:border-border hover:shadow-lg hover:shadow-emerald-500/5 active:scale-[0.99]"
            >
              <div className="flex items-center gap-6">
-               <div className="w-14 h-14 rounded-xl bg-[var(--theme-gradient)] flex items-center justify-center text-white shrink-0 shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition-transform">
+               <div className="w-14 h-14 rounded-xl bg-foreground flex items-center justify-center text-white shrink-0 shadow-lg group-hover:scale-110 transition-transform">
                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg>
                </div>
                <div>
