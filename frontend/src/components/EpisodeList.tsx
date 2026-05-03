@@ -8,7 +8,7 @@ export default function EpisodeList() {
   const [loading, setLoading] = useState(true);
   const [playingUrl, setPlayingUrl] = useState<string | null>(null);
 
-  const BASE = import.meta.env.BASE_URL || '/';
+  const BASE = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
 
   useEffect(() => {
     fetch(`${BASE}static-data/runs.json`)

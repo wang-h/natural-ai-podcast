@@ -6,7 +6,7 @@ import { Separator } from '@/components/ui/separator';
 import { cn } from "@/lib/utils";
 
 export default function RunDetail() {
-  const BASE = import.meta.env.BASE_URL || '/';
+  const BASE = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
   const resolveUrl = (url: string) => url.startsWith('/') ? `${BASE}${url.slice(1)}` : url;
   const [runId, setRunId] = useState('');
   const [data, setData] = useState<any>(null);
