@@ -11,11 +11,7 @@
 
 ![Demo](demo.png)
 
-**试听 Demo：**
-
-<audio controls>
-  <source src="runs/script-1777787706/final_deepling.mp3" type="audio/mpeg">
-</audio>
+**试听 Demo：** [final_deepling.mp3](runs/script-1777787706/final_deepling.mp3)
 
 ---
 
