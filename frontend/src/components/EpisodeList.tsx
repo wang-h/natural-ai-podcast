@@ -8,8 +8,10 @@ export default function EpisodeList() {
   const [loading, setLoading] = useState(true);
   const [playingUrl, setPlayingUrl] = useState<string | null>(null);
 
+  const BASE = import.meta.env.BASE_URL || '/';
+
   useEffect(() => {
-    fetch('/static-data/runs.json')
+    fetch(`${BASE}static-data/runs.json`)
       .then(res => {
         if (!res.ok) throw new Error('no static data');
         return res.json();
@@ -66,8 +68,9 @@ export default function EpisodeList() {
       toast('该节目暂无音频', { icon: '🔇' });
       return;
     }
+    const audioUrl = r.audio_url.startsWith('/') ? `${BASE}${r.audio_url.slice(1)}` : r.audio_url;
     window.dispatchEvent(new CustomEvent('play-episode', {
-      detail: { url: r.audio_url, title: r.id, date: r.created }
+      detail: { url: audioUrl, title: r.id, date: r.created }
     }));
     toast(`正在播放: ${r.id}`, { icon: '🎧' });
   };

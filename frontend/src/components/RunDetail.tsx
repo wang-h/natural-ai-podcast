@@ -6,6 +6,8 @@ import { Separator } from '@/components/ui/separator';
 import { cn } from "@/lib/utils";
 
 export default function RunDetail() {
+  const BASE = import.meta.env.BASE_URL || '/';
+  const resolveUrl = (url: string) => url.startsWith('/') ? `${BASE}${url.slice(1)}` : url;
   const [runId, setRunId] = useState('');
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -21,7 +23,8 @@ export default function RunDetail() {
     }
     setRunId(id);
 
-    fetch(`/static-data/runs/${id}.json`)
+    const BASE = import.meta.env.BASE_URL || '/';
+    fetch(`${BASE}static-data/runs/${id}.json`)
       .then(res => {
         if (!res.ok) throw new Error('no static data');
         return res.json();
@@ -70,7 +73,7 @@ export default function RunDetail() {
         </div>
         {data.audio_url && (
           <Button asChild variant="gradient" className="rounded-xl font-bold">
-            <a href={data.audio_url} download>
+            <a href={resolveUrl(data.audio_url)} download>
               <Download size={16} className="mr-2" /> 下载音频
             </a>
           </Button>
@@ -82,7 +85,7 @@ export default function RunDetail() {
            <button
              onClick={() => {
                if (data.audio_url) {
-                 window.dispatchEvent(new CustomEvent('play-episode', { detail: { url: data.audio_url, title: data.id, date: '' } }));
+                 window.dispatchEvent(new CustomEvent('play-episode', { detail: { url: resolveUrl(data.audio_url), title: data.id, date: '' } }));
                }
              }}
              className="w-full group relative overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-r from-blue-500/5 via-emerald-500/5 to-blue-500/5 p-8 text-left transition-all hover:border-border hover:shadow-lg hover:shadow-emerald-500/5 active:scale-[0.99]"
