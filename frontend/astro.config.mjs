@@ -7,6 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   integrations: [react()],
   output: 'static',
+  base: '/natural-ai-podcast',
 
   vite: {
     plugins: [tailwindcss()],
