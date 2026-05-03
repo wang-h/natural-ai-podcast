@@ -1,0 +1,7 @@
+{
+  "speaker": "林深",
+  "text": "比如训练数据里到底有没有偏，模型的输出在实际场景里会不会造成问题。",
+  "voice_id": "Chinese (Mandarin)_Southern_Young_Man",
+  "emotion": "fluent",
+  "model": "speech-2.8-hd"
+}

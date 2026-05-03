@@ -1,0 +1,1130 @@
+[
+  {
+    "index": 1,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "大家好，我是林深。"
+  },
+  {
+    "index": 2,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "我是若水，欢迎收听 DeepLing AI 播客。"
+  },
+  {
+    "index": 3,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "最近我在刷社交媒体的时候看到个特别有意思的话题。<#0.2#>"
+  },
+  {
+    "index": 4,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "什么话题？"
+  },
+  {
+    "index": 5,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "有人说 GPT 好像突然开始喜欢生成哥布林了。"
+  },
+  {
+    "index": 6,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 360,
+    "gap_ms": 0,
+    "text": "等等，哥布林？(chuckle) 就那种绿绿的、尖耳朵的、奇幻游戏里的小怪物？"
+  },
+  {
+    "index": 7,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "对，就那个。"
+  },
+  {
+    "index": 8,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "这也太互联网了，(breath) 明明就是一个模型的输出倾向，到了热搜上就变成了 AI 有了奇怪的审美。"
+  },
+  {
+    "index": 9,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 360,
+    "gap_ms": 0,
+    "text": "但你别说，这件事真的值得好好聊聊。"
+  },
+  {
+    "index": 10,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "我觉得吧，好笑的地方恰恰就在这里，(emm) 我们人类太擅长把机器输出当成机器态度了。"
+  },
+  {
+    "index": 11,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "嗯，是。"
+  },
+  {
+    "index": 12,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "林深你先来说，你作为技术背景的人怎么看这件事？"
+  },
+  {
+    "index": 13,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "我的第一反应是，这个说法本身就是一个语言上的陷阱。<#0.2#>"
+  },
+  {
+    "index": 14,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "怎么说？"
+  },
+  {
+    "index": 15,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "它用\"喜欢\"这个词，但模型它不是真的喜欢，<#0.2#>它没有欲望、没有情绪，它只是在做概率计算。"
+  },
+  {
+    "index": 16,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 250,
+    "gap_ms": 0,
+    "text": "等下，你说完我再说。"
+  },
+  {
+    "index": 17,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "我是说，模型在训练过程里见过大量奇幻题材的内容，哥布林这个词出现的频率非常高。"
+  },
+  {
+    "index": 18,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "有多高？"
+  },
+  {
+    "index": 19,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "你想象一下，DND 跑团玩家写的文本，龙与地下城规则书，那些桌游的设定集。"
+  },
+  {
+    "index": 20,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "还有魔兽世界。"
+  },
+  {
+    "index": 21,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "对，还有魔兽世界，然后再加上各种奇幻小说的插图，桌游的卡牌描述。"
+  },
+  {
+    "index": 22,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "所以你是说，模型在生成一个怪异生物的时候，哥布林是它最容易调用的模板之一。"
+  },
+  {
+    "index": 23,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "对，就是这个意思。<#0.2#>"
+  },
+  {
+    "index": 24,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "哥布林它有特殊性吗？"
+  },
+  {
+    "index": 25,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "我猜有几个原因。"
+  },
+  {
+    "index": 26,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "你说。"
+  },
+  {
+    "index": 27,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "第一，哥布林这个形象在互联网迷因文化里被大量使用。"
+  },
+  {
+    "index": 28,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "就是表情包、搞笑图那种。"
+  },
+  {
+    "index": 29,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "对，你搜索哥布林出来的内容，有一大半是各种梗图。"
+  },
+  {
+    "index": 30,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "这我信，网上那哥布林表情包确实多。"
+  },
+  {
+    "index": 31,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "还有亚文化圈子里的二次创作。"
+  },
+  {
+    "index": 32,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "所以它其实已经不完全是奇幻设定里的那个东西了，它变成了一种互联网符号。"
+  },
+  {
+    "index": 33,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "对，它在很多语境下已经被符号化了。"
+  },
+  {
+    "index": 34,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "符号化？"
+  },
+  {
+    "index": 35,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "就是它不只是一个怪物，它还代表了一种叙事类型。"
+  },
+  {
+    "index": 36,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "什么叙事类型？"
+  },
+  {
+    "index": 37,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "你像那种小个子、狡猾的、群居的、躲在洞穴里的生物，它特别适合用来构建一种冒险故事的开场。"
+  },
+  {
+    "index": 38,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "哦我懂了，(breath) 就是剑与魔法类型的冒险者刚踏入地下城，遇到的第一波怪物往往就是哥布林。"
+  },
+  {
+    "index": 39,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "对，而且这种叙事模板在 RPG 游戏里太多了，模型学到的不是\"哥布林长什么样\"，而是\"在这种场景下，哥布林往往会出现\"。"
+  },
+  {
+    "index": 40,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "所以它其实是学了一种叙事惯例。"
+  },
+  {
+    "index": 41,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "差不多是这个意思。<#0.2#>"
+  },
+  {
+    "index": 42,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "那我要挑战一下你了。"
+  },
+  {
+    "index": 43,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "你说。"
+  },
+  {
+    "index": 44,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "你讲了这么多数据原因、训练原因，(emm) 但你有没有想过一个问题，就是为什么人们会关注这件事？"
+  },
+  {
+    "index": 45,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "你是说传播层面？"
+  },
+  {
+    "index": 46,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "对，就是一个\"模型生成哥布林\"的观察，本来在技术圈里可能只是个小众讨论，但它忽然就破圈了，变成一个大众话题。"
+  },
+  {
+    "index": 47,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "这确实值得聊。"
+  },
+  {
+    "index": 48,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "我的观察是，因为这符合互联网传播的规律。"
+  },
+  {
+    "index": 49,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "你展开说说。"
+  },
+  {
+    "index": 50,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "你想，\"模型在某些语料上有统计偏差\"，这句话有人转发吗？"
+  },
+  {
+    "index": 51,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "没有。"
+  },
+  {
+    "index": 52,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 360,
+    "gap_ms": 0,
+    "text": "但\"GPT 喜欢哥布林\"这句话有人转发吗？"
+  },
+  {
+    "index": 53,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "有，而且很多人。"
+  },
+  {
+    "index": 54,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "原因很简单，因为它有人格化了，它有情绪了，它变成了一个好故事。"
+  },
+  {
+    "index": 55,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "而且拟人化之后，它就有争议性了。"
+  },
+  {
+    "index": 56,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "你说的争议性是指？"
+  },
+  {
+    "index": 57,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "对，你想想看，有人会觉得这很有趣，有人会觉得这说明 AI 有问题，有人会开始分析它到底反映了什么深层心理。"
+  },
+  {
+    "index": 58,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "然后各种观点就吵起来了，流量就起来了。"
+  },
+  {
+    "index": 59,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "这和之前很多 AI 新闻的传播逻辑是一样的。"
+  },
+  {
+    "index": 60,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "什么逻辑？"
+  },
+  {
+    "index": 61,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "就是先把模型输出解读成模型意图，然后围绕意图展开讨论。"
+  },
+  {
+    "index": 62,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "所以\"GPT 喜欢哥布林\"和之前那些\"AI 有政治立场\"\"AI 开始撒谎\"的新闻是同一个套路。"
+  },
+  {
+    "index": 63,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "本质上是一样的。(sighs)"
+  },
+  {
+    "index": 64,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 360,
+    "gap_ms": 0,
+    "text": "但你不能否认，这些话题确实让更多人开始关心 AI 的问题。"
+  },
+  {
+    "index": 65,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "这是另外一件事，我们可以分开看。"
+  },
+  {
+    "index": 66,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "你是说传播有价值不代表内容准确？"
+  },
+  {
+    "index": 67,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "对，就比如说，今天有人发一条\"GPT 忽然开始画哥布林\"，它确实能引起关注，但关注本身不能帮大家理解模型到底在做什么。"
+  },
+  {
+    "index": 68,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "反而可能形成一种误解。"
+  },
+  {
+    "index": 69,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "对，它可能让人觉得模型有某种审美偏好，(breath) 甚至有某种意图。"
+  },
+  {
+    "index": 70,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 360,
+    "gap_ms": 0,
+    "text": "但实际上没有。"
+  },
+  {
+    "index": 71,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "实际上没有。"
+  },
+  {
+    "index": 72,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "那你觉得这件事真正值得警惕的是什么？"
+  },
+  {
+    "index": 73,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "我觉得最值得警惕的是，我们太习惯于把输出解读成意图。"
+  },
+  {
+    "index": 74,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "你展开说。"
+  },
+  {
+    "index": 75,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "你想象一下，如果今天有人说\"GPT 在某个场景下输出了负面情绪\"，然后舆论就开始讨论 AI 是不是有心理问题。"
+  },
+  {
+    "index": 76,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "这个确实看到过类似新闻。"
+  },
+  {
+    "index": 77,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "对，这种解读会形成一个危险的先例，就是我们开始用人类情感的框架去套模型。"
+  },
+  {
+    "index": 78,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "这会导致什么问题？"
+  },
+  {
+    "index": 79,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "两个方向都有问题。"
+  },
+  {
+    "index": 80,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "你说。"
+  },
+  {
+    "index": 81,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "一方面，有人会觉得模型什么都不是，所以不用管它。"
+  },
+  {
+    "index": 82,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 180,
+    "gap_ms": 0,
+    "text": "另一方面，有人会觉得模型什么都懂，给它赋予各种能力。"
+  },
+  {
+    "index": 83,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "所以两边都是误区。"
+  },
+  {
+    "index": 84,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "对，这是第一层。"
+  },
+  {
+    "index": 85,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "那第二层呢？"
+  },
+  {
+    "index": 86,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "第二层是，这种拟人化叙事会让我们错过真正需要关注的东西。"
+  },
+  {
+    "index": 87,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "比如？"
+  },
+  {
+    "index": 88,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "比如训练数据里到底有没有偏，模型的输出在实际场景里会不会造成问题。"
+  },
+  {
+    "index": 89,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "你是说大家该关心的是技术现实，不是故事剧情。"
+  },
+  {
+    "index": 90,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "差不多是这个意思。<#0.2#>"
+  },
+  {
+    "index": 91,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "那你觉得作为普通人，应该怎么看待这些 AI 新闻？"
+  },
+  {
+    "index": 92,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "我的建议是，先问一个问题。"
+  },
+  {
+    "index": 93,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "什么问题？"
+  },
+  {
+    "index": 94,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "这个新闻是在描述模型的什么？"
+  },
+  {
+    "index": 95,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "你是说描述的是输出结果，还是在推测模型的目的？"
+  },
+  {
+    "index": 96,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "对，如果它只是在描述输出，然后给你加了一个\"喜欢\"\"讨厌\"\"害怕\"的标签，那你就要小心了。"
+  },
+  {
+    "index": 97,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 200,
+    "gap_ms": 0,
+    "text": "对，它可能在做拟人化叙事。"
+  },
+  {
+    "index": 98,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 360,
+    "gap_ms": 0,
+    "text": "但这不意味着内容没有价值。"
+  },
+  {
+    "index": 99,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "当然不意味着。"
+  },
+  {
+    "index": 100,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "我是说，我们要有能力区分这两个东西。"
+  },
+  {
+    "index": 101,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "对，一个是描述现象，一个是解释动机。"
+  },
+  {
+    "index": 102,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "现象可以讨论，动机要谨慎。"
+  },
+  {
+    "index": 103,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "就是这个意思。<#0.2#>"
+  },
+  {
+    "index": 104,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "那你觉得普通人能不能做到这一点？"
+  },
+  {
+    "index": 105,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "说实话有点难。"
+  },
+  {
+    "index": 106,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "为什么？"
+  },
+  {
+    "index": 107,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "因为拟人化是人类的本能。"
+  },
+  {
+    "index": 108,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 180,
+    "gap_ms": 0,
+    "text": "说得更准确点，我们从小就会给玩具熊赋予情感，给宠物赋予人格。"
+  },
+  {
+    "index": 109,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "这倒没错，我小时候也会跟我的小熊说话。"
+  },
+  {
+    "index": 110,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "所以当一个 AI 表现得像是有个性的时候，我们自然会去解读它。"
+  },
+  {
+    "index": 111,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "而且社交媒体会放大这种倾向，因为它太适合传播了。"
+  },
+  {
+    "index": 112,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "对。"
+  },
+  {
+    "index": 113,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "我再问你一个问题。"
+  },
+  {
+    "index": 114,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "你说。"
+  },
+  {
+    "index": 115,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "假设有一天，模型真的开始出现某种稳定的、有规律的输出偏差，你觉得普通人应该怎么看这件事？"
+  },
+  {
+    "index": 116,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "我会觉得，可以问两个问题。<#0.2#>"
+  },
+  {
+    "index": 117,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "哪两个？"
+  },
+  {
+    "index": 118,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "第一，这个偏差是不是因为训练数据的某些特征？"
+  },
+  {
+    "index": 119,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "就是数据有没有偏。"
+  },
+  {
+    "index": 120,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "对，数据有没有偏，有没有某些类型的语料过度出现。"
+  },
+  {
+    "index": 121,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "第二个，这个偏差在实际应用场景里会不会造成问题。"
+  },
+  {
+    "index": 122,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "就是有没有风险。"
+  },
+  {
+    "index": 123,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "有没有风险，以及这个风险能不能通过技术手段去纠正。"
+  },
+  {
+    "index": 124,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "你觉得现在这些新闻做到这两点了吗？"
+  },
+  {
+    "index": 125,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "说实话，大部分没有。"
+  },
+  {
+    "index": 126,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "大部分只是给你一个戏剧性的标题。"
+  },
+  {
+    "index": 127,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "对，然后留一堆悬念。(sighs)"
+  },
+  {
+    "index": 128,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "所以这次哥布林的事，我觉得它更像是一个窗口。"
+  },
+  {
+    "index": 129,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "窗口？"
+  },
+  {
+    "index": 130,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "对，就是透过它，我们能看见普通人怎么理解 AI，我们能看见 AI 新闻怎么传播。"
+  },
+  {
+    "index": 131,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "也能看见我们自己在哪些地方容易被带跑。"
+  },
+  {
+    "index": 132,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "所以它不是一个技术问题。"
+  },
+  {
+    "index": 133,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "它是一个认知问题，也是一个传播问题。"
+  },
+  {
+    "index": 134,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "哥布林这个话题比我想象的要更有意思。"
+  },
+  {
+    "index": 135,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "说实话，我一开始还真以为是。"
+  },
+  {
+    "index": 136,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "结果聊着聊着发现它背后其实有很多东西可以挖。"
+  },
+  {
+    "index": 137,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "对，从数据偏差到人类认知，从技术机制到传播规律。"
+  },
+  {
+    "index": 138,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 180,
+    "gap_ms": 0,
+    "text": "所以好的话题就是这样，它看起来很简单，(chuckle) 但聊着聊着你就发现它牵扯的东西越来越深。"
+  },
+  {
+    "index": 139,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "对。"
+  },
+  {
+    "index": 140,
+    "speaker": "林深",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "我是林深。"
+  },
+  {
+    "index": 141,
+    "speaker": "若水",
+    "emotion": "fluent",
+    "overlap_ms": 0,
+    "gap_ms": 0,
+    "text": "我是若水，我们下期见。"
+  }
+]

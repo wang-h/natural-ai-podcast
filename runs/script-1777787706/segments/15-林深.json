@@ -1,0 +1,7 @@
+{
+  "speaker": "林深",
+  "text": "它用\"喜欢\"这个词，但模型它不是真的喜欢，<#0.2#>它没有欲望、没有情绪，它只是在做概率计算。",
+  "voice_id": "Chinese (Mandarin)_Southern_Young_Man",
+  "emotion": "fluent",
+  "model": "speech-2.8-hd"
+}

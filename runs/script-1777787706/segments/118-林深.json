@@ -1,0 +1,7 @@
+{
+  "speaker": "林深",
+  "text": "第一，这个偏差是不是因为训练数据的某些特征？",
+  "voice_id": "Chinese (Mandarin)_Southern_Young_Man",
+  "emotion": "fluent",
+  "model": "speech-2.8-hd"
+}
