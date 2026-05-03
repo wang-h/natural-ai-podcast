@@ -101,11 +101,11 @@ const { title } = Astro.props;
                 <LayoutGrid size={18} className="text-indigo-500 group-hover:scale-110 transition-transform" />
                 <span>返回首页</span>
               </a>
-              <a href="/script/" class="nav-item group">
+              <a href="/script/" class="nav-item group api-only">
                 <FileText size={18} className="text-sky-500 group-hover:scale-110 transition-transform" />
                 <span>Text → Script</span>
               </a>
-              <a href="/render/" class="nav-item group">
+              <a href="/render/" class="nav-item group api-only">
                 <Headphones size={18} className="text-emerald-500 group-hover:scale-110 transition-transform" />
                 <span>Script → Audio</span>
               </a>
@@ -168,6 +168,13 @@ const { title } = Astro.props;
         if (themeToggle) {
           themeToggle.addEventListener('click', handleToggleClick);
         }
+
+        // Hide API-only nav items on static deployments (no backend)
+        fetch('/api/runs', { method: 'HEAD' }).catch(() => {
+          document.querySelectorAll('.api-only').forEach(el => {
+            (el as HTMLElement).style.display = 'none';
+          });
+        });
       }
 
       document.addEventListener('astro:page-load', init);

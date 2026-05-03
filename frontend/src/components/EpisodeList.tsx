@@ -9,15 +9,26 @@ export default function EpisodeList() {
   const [playingUrl, setPlayingUrl] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('/api/runs')
-      .then(res => res.json())
+    fetch('/static-data/runs.json')
+      .then(res => {
+        if (!res.ok) throw new Error('no static data');
+        return res.json();
+      })
       .then(data => {
         setRuns(data);
         setLoading(false);
       })
-      .catch(err => {
-        console.error(err);
-        setLoading(false);
+      .catch(() => {
+        fetch('/api/runs')
+          .then(res => res.json())
+          .then(data => {
+            setRuns(data);
+            setLoading(false);
+          })
+          .catch(err => {
+            console.error(err);
+            setLoading(false);
+          });
       });
   }, []);
 

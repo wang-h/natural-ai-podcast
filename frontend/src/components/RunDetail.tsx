@@ -21,18 +21,29 @@ export default function RunDetail() {
     }
     setRunId(id);
 
-    fetch(`/api/runs/${id}`)
+    fetch(`/static-data/runs/${id}.json`)
       .then(res => {
-        if (!res.ok) throw new Error('Run not found');
+        if (!res.ok) throw new Error('no static data');
         return res.json();
       })
       .then(d => {
         setData(d);
         setLoading(false);
       })
-      .catch(err => {
-        setError(err.message);
-        setLoading(false);
+      .catch(() => {
+        fetch(`/api/runs/${id}`)
+          .then(res => {
+            if (!res.ok) throw new Error('Run not found');
+            return res.json();
+          })
+          .then(d => {
+            setData(d);
+            setLoading(false);
+          })
+          .catch(err => {
+            setError(err.message);
+            setLoading(false);
+          });
       });
   }, []);
 

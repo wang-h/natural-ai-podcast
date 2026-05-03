@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="logo.png" alt="Logo" width="120" />
+</div>
+
 # Natural AI Podcast
 
 > **AI 驱动的自然质感对谈播客系统。** 结合 4 阶段 LLM 脚本优化管线与 MiniMax 高级 TTS 技术，打造像真人一样闲聊的播客体验。
